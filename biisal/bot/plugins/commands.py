@@ -225,7 +225,7 @@ async def cb_handler(client, query):
     
     elif data == "about":
         await query.message.edit_caption(
-            caption=f"<b>Mʏ ɴᴀᴍᴇ :<a href='https://t.me/Sonickuwalupdate'>{bot_name}</a>\nAᴅᴍɪɴ : <a href='https://t.me/Sonickuwalupdate'>KANHA</a>\nʜᴏsᴛᴇᴅ ᴏɴ : ʜᴇʀᴏᴋᴜ\nᴅᴀᴛᴀʙᴀsᴇ : ᴍᴏɴɢᴏ ᴅʙ\nʟᴀɴɢᴜᴀɢᴇ : ᴘʏᴛʜᴏɴ 3</b>",
+            caption=f"<b>Mʏ ɴᴀᴍᴇ :<a href='https://t.me/Sonickuwalupdate'>{bot_name}</a>\nAᴅᴍɪɴ : <a href='https://telegram.me/Chatkanhabot'>KANHA</a>\nʜᴏsᴛᴇᴅ ᴏɴ : ʜᴇʀᴏᴋᴜ\nᴅᴀᴛᴀʙᴀsᴇ : ᴍᴏɴɢᴏ ᴅʙ\nʟᴀɴɢᴜᴀɢᴇ : ᴘʏᴛʜᴏɴ 3</b>",
             reply_markup=InlineKeyboardMarkup(
                 [[ 
                      InlineKeyboardButton("ʜᴏᴍᴇ", callback_data="start"),
@@ -242,10 +242,10 @@ async def cb_handler(client, query):
                      InlineKeyboardButton("ᴄʟᴏsᴇ ‼️", callback_data="close_data")
                   ]]            )
         )
-    elif data == "aboutDev":
+    elif data == "about❤️":
         # please don't steal credit
         await query.message.edit_caption(
-            caption=f"<b>ᴊᴀɪ sʜʀᴇᴇ ᴋʀsɴᴀ ᴅᴇᴀʀ...\nɪᴍ <a href='https://t.me/Sonickuwalupdate'>KANHA ❤️</a>\nɪ ᴀᴍ ᴛʜᴇ ᴀᴅᴍɪɴ ᴏғ ᴛʜɪs ʙᴏᴛ..ᴀɴᴅ ɪ ᴍᴀᴅᴇ ᴛʜᴇ  ʙᴏᴛ ʙʏ ʜᴇʟᴘ ᴏғ <a href='https://t.me/Sonickuwalupdate'>kanha</a> ʙʀᴏ..\n\nGɪᴛʜᴜʙ : <a href='https://t.me/Sonickuwalupdate'>kanha Gɪᴛʜᴜʙ</a></b>",
+            caption=f"<b>ᴊᴀɪ sʜʀᴇᴇ ᴋʀsɴᴀ ᴅᴇᴀʀ...\nɪᴍ <a href='https://t.me/Sonickuwalupdate'>KANHA ❤️</a>\nɪ ᴀᴍ ᴛʜᴇ ᴀᴅᴍɪɴ ᴏғ ᴛʜɪs ʙᴏᴛ..ᴀɴᴅ ɪ ᴍᴀᴅᴇ ᴛʜᴇ  ʙᴏᴛ ʙʏ ʜᴇʟᴘ ᴏғ <a href='https://telegram.me/Chatkanhabot'>kanha</a> ʙʀᴏ..\n\nGɪᴛʜᴜʙ : <a href='https://telegram.me/Chatkanhabot'>kanha Gɪᴛʜᴜʙ</a></b>",
             reply_markup=InlineKeyboardMarkup(
                 [[ 
                      InlineKeyboardButton("ʜᴏᴍᴇ", callback_data="start"),
