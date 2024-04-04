@@ -29,11 +29,9 @@ msg_text ="""<b>YOUR LINK GENERATED ! 😉
 🔻 <a href="{}">𝗙𝗔𝗦𝗧 𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗</a>
 🔺 <a href="{}">𝗪𝗔𝗧𝗖𝗛 𝗢𝗡𝗟𝗜𝗡𝗘</a>
 
-‣ JOIN  <a href="https://t.me/Sonickuwalupdate"> ⭐ TELEGRAM CHANNEL ⭐</a>
+🌝 THIS FILE LINK ✅ NEVER DELETE 😃
 
-Note :- 🌝 THIS FILE LINK ✅ NEVER DELETE 😃
-
-</b> 🤡"""
+‣ JOIN  <a href="https://t.me/Sonickuwalupdate"> ⭐ TELEGRAM CHANNEL ⭐</a></b> 🤡"""
 
 
 
@@ -92,8 +90,8 @@ async def private_receive_handler(c: Client, m: Message):
             text=msg_text.format(get_name(log_msg), humanbytes(get_media_file_size(m)), online_link, stream_link),
             quote=True,
             disable_web_page_preview=True,
-            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(" WATCH ONLINE 🔺", url=stream_link), #Stream Link
-                                                InlineKeyboardButton(' FAST DOWNLOAD 🔻', url=online_link)]]) #Download Link
+            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("WATCH ONLINE 🔺", url=stream_link), #Stream Link
+                                                InlineKeyboardButton('FAST DOWNLOAD 🔻', url=online_link)]]) #Download Link
         )
     except FloodWait as e:
         print(f"Sleeping for {str(e.x)}s")
@@ -122,8 +120,8 @@ async def channel_receive_handler(bot, broadcast):
             message_id=broadcast.id,
             reply_markup=InlineKeyboardMarkup(
                 [
-                    [InlineKeyboardButton(" WATCH ONLINE 🔺", url=stream_link),
-                    InlineKeyboardButton(' FAST DOWNLOAD 🔻', url=online_link)] 
+                    [InlineKeyboardButton("WATCH ONLINE 🔺", url=stream_link),
+                    InlineKeyboardButton('FAST DOWNLOAD 🔻', url=online_link)] 
                 ]
             )
         )
