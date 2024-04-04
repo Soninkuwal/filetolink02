@@ -24,12 +24,12 @@ pass_db = Database(Var.DATABASE_URL, "ag_passwords")
 msg_text ="""<b>YOUR LINK GENERATED ! 😉
 
 ‣ 𝙁𝙄𝙇𝙀 𝙉𝘼𝙈𝙀 💫 : <i>{}</i>
-‣ ‣ 𝙁𝙄𝙇𝙀 𝙎𝙄𝙕𝙀 🤔 : {}
+‣ 𝙁𝙄𝙇𝙀 𝙎𝙄𝙕𝙀 🤔 : {}
 
 🔻 <a href="{}">𝗙𝗔𝗦𝗧 𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗</a>
 🔺 <a href="{}">𝗪𝗔𝗧𝗖𝗛 𝗢𝗡𝗟𝗜𝗡𝗘</a>
 
-🌝 THIS FILE LINK ✅ NEVER DELETE 😃
+NOTES: 🌝 THIS FILE LINK ✅ NEVER DELETE ! 😃
 
 ‣ JOIN  <a href="https://t.me/Sonickuwalupdate"> ⭐ TELEGRAM CHANNEL ⭐</a></b> 🤡"""
 
