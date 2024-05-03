@@ -14,7 +14,7 @@ class Var(object):
     MULTI_CLIENT = False
     API_ID = int(getenv('API_ID', '20945078'))
     API_HASH = str(getenv('API_HASH', '93f6b8ce4bb0ab61b4c7e42187f2aa64'))
-    BOT_TOKEN = str(getenv('BOT_TOKEN' , '6785205860:AAF29sg9Caf3VuIjAGhO9RFnoVYP77fe6x4'))
+    BOT_TOKEN = str(getenv('BOT_TOKEN' , '6785205860:AAGjdRAPWKS-k0yGf5SLMqvw8xnbdYY09ME'))
     name = str(getenv('name', 'kanha_file2link_bot'))
     SLEEP_THRESHOLD = int(getenv('SLEEP_THRESHOLD', '60'))
     WORKERS = int(getenv('WORKERS', '4'))
@@ -42,5 +42,5 @@ class Var(object):
     DATABASE_URL = str(getenv('DATABASE_URL', ''))
     UPDATES_CHANNEL = str(getenv('UPDATES_CHANNEL', 'Sonickuwalupdate')) 
     BANNED_CHANNELS = list(set(int(x) for x in str(getenv("BANNED_CHANNELS", "")).split()))   
-    BAN_CHNL = list(set(int(x) for x in str(getenv("BAN_CHNL", "")).split()))   
+    BAN_CHNL = list(set(int(x) for x in str(getenv("BAN_CHNL", "-1002049098708")).split()))   
     BAN_ALERT = str(getenv('BAN_ALERT' , '<b>ʏᴏᴜʀ ᴀʀᴇ ʙᴀɴɴᴇᴅ ᴛᴏ ᴜsᴇ ᴛʜɪs ʙᴏᴛ.Pʟᴇᴀsᴇ ᴄᴏɴᴛᴀᴄᴛ @Sonickuwalupdate ᴛᴏ ʀᴇsᴏʟᴠᴇ ᴛʜᴇ ɪssᴜᴇ!!</b>'))
