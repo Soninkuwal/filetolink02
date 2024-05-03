@@ -18,7 +18,7 @@ from biisal.vars import bot_name , bisal_channel , bisal_grp
 
 SRT_TXT = """<b><blockquote>𝐇𝐄𝐋𝐋𝐎🌈™ {}, 𝙈𝙔 𝙉𝘼𝙈𝙀 <a href=https://t.me/{}>{}</a></blockquote>
 
-【 I AM KANHA FILE STORAGE BOT 】
+【 I AM FILE TO STREAM KANHA 💖 BOT 】
 
 【💕❤️ MY FATHER❤️💕 】
    ❤️ KANHA MEENA KUWAL ⚡
