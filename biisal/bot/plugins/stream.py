@@ -29,6 +29,20 @@ msg_text ="""<b>YOUR LINK GENERATED ! 😉
 🔻 <a href="{}">𝗙𝗔𝗦𝗧 𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗</a>
 🔺 <a href="{}">𝗪𝗔𝗧𝗖𝗛 𝗢𝗡𝗟𝗜𝗡𝗘</a>
 
+【💕❤️ MY FATHER❤️💕 】
+   ❤️ KANHA MEENA KUWAL ⚡
+  <a href=https://t.me/Chatkanhabot>CONTACT ☎️ NOW</a>
+     
+╔══════════════════╗
+ [📌 JOIN MOVIE GROUP 🎭 ] 
+   👇👇👇👇👇👇👇👇👇
+<a href=https://t.me/SONICKUWALMOVIE>JOIN MOVIE 🎥 GROUP</a>
+
+ [📌 JOIN UPDATE CHANNEL ⚡]
+👇👇👇👇👇👇👇👇
+<a href=https://t.me/Sonickuwalupdate>JOIN UPDATED CHANNEL</a>
+╚══════════════════╝
+
 NOTES: 🌝 THIS FILE LINK ✅ NEVER DELETE ! 😃
 
 ‣ JOIN  <a href="https://t.me/Sonickuwalupdate"> ⭐ TELEGRAM CHANNEL ⭐</a></b> 🤡"""
