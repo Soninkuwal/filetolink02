@@ -7,8 +7,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 bot_name = "KANHA FILES TO LINK 🖇️ BOT"
-bisal_channel = "https://t.me/Sonickuwalupdate"
-bisal_grp = "https://t.me/SONICKUWALMOVIE"
+kanha_channel = "https://t.me/Sonickuwalupdate"
+kanha_grp = "https://t.me/SONICKUWALMOVIE"
 
 class Var(object):
     MULTI_CLIENT = False
