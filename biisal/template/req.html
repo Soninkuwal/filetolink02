@@ -151,6 +151,7 @@
             <div class="lg:w-9/12 lg:px-12 lg:py-4 w-full  border border-danger wow animate__animated animate__fadeInLeft">
                 <video id="player" class="player " playsinline controls>
                     <source src="{{file_url}}" type="video/mp4">
+		    <source src="{{file_url}}" type="video/mkv">
                 </video>
             </div>
         </div>
@@ -317,7 +318,7 @@
 
     </script>
     
-    <script src="https://cdn.plyr.io/3.6.9/plyr.js"></script>
+    <script src="https://cdn.plyr.io/3.6.9/plyr.css"></script>
 	<script>
         const controls = [
             'play-large',
@@ -330,6 +331,7 @@
             'volume',
             'captions',
             'settings',
+	    'quality',
             'pip',
             'airplay',
             'download',
