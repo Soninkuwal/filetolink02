@@ -16,10 +16,28 @@ from pyrogram.types import ReplyKeyboardMarkup
 from biisal.vars import bot_name , bisal_channel , bisal_grp
 
 
-SRT_TXT = """<b>ᴊᴀɪ sʜʀᴇᴇ ᴋʀsɴᴀ {}!,
-I ᴀᴍ Fɪʟᴇ ᴛᴏ Lɪɴᴋ Gᴇɴᴇʀᴀᴛᴏʀ Bᴏᴛ ᴡɪᴛʜ Cʜᴀɴɴᴇʟ sᴜᴘᴘᴏʀᴛ.
+SRT_TXT = """<b><blockquote>𝐇𝐄𝐋𝐋𝐎🌈™ {}, 𝙈𝙔 𝙉𝘼𝙈𝙀 <a href=https://t.me/{}>{}</a></blockquote>
 
-Sᴇɴᴅ ᴍᴇ ᴀɴʏ ғɪʟᴇ ᴀɴᴅ ɢᴇᴛ ᴀ ᴅɪʀᴇᴄᴛ ᴅᴏᴡɴʟᴏᴀᴅ ʟɪɴᴋ ᴀɴᴅ sᴛʀᴇᴀᴍᴀʙʟᴇ ʟɪɴᴋ.!
+【 I AM KANHA FILE STORAGE BOT 】
+
+【💕❤️ MY FATHER❤️💕 】
+   ❤️ KANHA MEENA KUWAL ⚡
+  <a href=https://t.me/Chatkanhabot>CONTACT ☎️ NOW</a>
+     
+╔══════════════════╗
+ [📌 JOIN MOVIE GROUP 🎭 ] 
+   👇👇👇👇👇👇👇👇👇
+<a href=https://t.me/SONICKUWALMOVIE>JOIN MOVIE 🎥 GROUP</a>
+
+ [📌 JOIN UPDATE CHANNEL ⚡]
+👇👇👇👇👇👇👇👇
+<a href=https://t.me/Sonickuwalupdate>JOIN UPDATED CHANNEL</a>
+╚══════════════════╝
+
+I AM FILE TO STREAM KANHA BOT 💖 
+
+NOTE :- LINK NEVER DELETE 
+
 ᴍᴀɪɴᴛᴀɪɴᴇᴅ ʙʏ : <a href='https://telegram.me/Chatkanhabot'>❤️ sonic kuwal ❤️</a></b>"""
 
 @StreamBot.on_message(filters.command("start") & filters.private )
