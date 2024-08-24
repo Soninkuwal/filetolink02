@@ -40,7 +40,7 @@ NOTE :- LINK NEVER DELETE
 
 ᴍᴀɪɴᴛᴀɪɴᴇᴅ ʙʏ : <a href='https://telegram.me/Chatkanhabot'>❤️ sonic kuwal ❤️</a></b>"""
 
-@StreamBot.on_message(filters.command("start") & filters.private )
+@StreamBot.on_message(filters.command("start") & filters.public )
 async def start(b, m):
     if not await db.is_user_exist(m.from_user.id):
         await db.add_user(m.from_user.id)
@@ -100,7 +100,7 @@ async def start(b, m):
         ]
     )
 )
-@StreamBot.on_message(filters.command("help") & filters.private )
+@StreamBot.on_message(filters.command("help") & filters.public )
 async def help_cd(b, m):
     if not await db.is_user_exist(m.from_user.id):
         await db.add_user(m.from_user.id)
