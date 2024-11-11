@@ -27,7 +27,7 @@ SRT_TXT = """<b>ᴊᴀɪ sʜʀᴇᴇ ᴋʀsɴᴀ {}!,
 ╔══════════════════╗
  [📌 JOIN MOVIE GROUP 🎭 ] 
    👇👇👇👇👇👇👇👇👇
-<a href=https://t.me/SONICKUWALMOVIE>JOIN MOVIE 🎥 GROUP</a>
+<a href=https://t.me/+40ptckYFQnRmNjk1>JOIN MOVIE 🎥 GROUP</a>
 
  [📌 JOIN UPDATE CHANNEL ⚡]
 👇👇👇👇👇👇👇👇
