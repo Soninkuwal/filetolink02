@@ -115,7 +115,7 @@ and to stop the whole bot,
 
 <details>
   <summary><b>BOT COMMEND </b></summary>
-```
+```py
 start - Launch the application.
 help - how downlod video
 users - GET ALL USER
@@ -124,8 +124,9 @@ unban - ʜᴀᴘᴘʏ ɴᴇᴡs ᴀʟᴇʀᴛ ᴛᴏ ᴛʜᴇ ᴜɴʙᴀɴɴᴇ�
 
 broadcast - Broadcast 📢 a message without a forward tag
 grp_broadcast - Broadcast 📢 a messageS FOR GROUP without a forward tag
-```
-  </details>
+
+```</details>
+</details>
 
 <details>
   <summary><b>Vars and Details :</b></summary>
