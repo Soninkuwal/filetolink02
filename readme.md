@@ -112,6 +112,21 @@ and to stop the whole bot,
 
  </details>
 </details>
+
+<details>
+  <summary><b>BOT COMMEND </b></summary>
+```
+start - Launch the application.
+help - how downlod video
+users - GET ALL USER
+ban - ʜᴀs ʙᴇᴇɴ ʙᴀɴɴᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ
+unban - ʜᴀᴘᴘʏ ɴᴇᴡs ᴀʟᴇʀᴛ ᴛᴏ ᴛʜᴇ ᴜɴʙᴀɴɴᴇᴅ
+
+broadcast - Broadcast 📢 a message without a forward tag
+grp_broadcast - Broadcast 📢 a messageS FOR GROUP without a forward tag
+```
+  </details>
+
 <details>
   <summary><b>Vars and Details :</b></summary>
 
