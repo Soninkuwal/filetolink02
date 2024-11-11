@@ -113,20 +113,7 @@ and to stop the whole bot,
  </details>
 </details>
 
-<details>
-  <summary><b>BOT COMMEND </b></summary>
-```py
-start - Launch the application.
-help - how downlod video
-users - GET ALL USER
-ban - ʜᴀs ʙᴇᴇɴ ʙᴀɴɴᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ
-unban - ʜᴀᴘᴘʏ ɴᴇᴡs ᴀʟᴇʀᴛ ᴛᴏ ᴛʜᴇ ᴜɴʙᴀɴɴᴇᴅ
 
-broadcast - Broadcast 📢 a message without a forward tag
-grp_broadcast - Broadcast 📢 a messageS FOR GROUP without a forward tag
-
-```</details>
-</details>
 
 <details>
   <summary><b>Vars and Details :</b></summary>
@@ -177,6 +164,17 @@ DATABASE_URL=mongodb_uri
 `NO_PORT` : If you don't want your port to be displayed. You should point your `PORT` to `80` (http) or `443` (https) for the links to work. Ignore this if you're on Heroku.
 
 `FQDN` :  A Fully Qualified Domain Name if present. Defaults to `WEB_SERVER_BIND_ADDRESS` </details>
+
+<details>
+  <summary><b>BOT COMMEND </b></summary>
+```start - Launch the application.
+help - how downlod video
+users - GET ALL USER
+ban - ʜᴀs ʙᴇᴇɴ ʙᴀɴɴᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ
+unban - ʜᴀᴘᴘʏ ɴᴇᴡs ᴀʟᴇʀᴛ ᴛᴏ ᴛʜᴇ ᴜɴʙᴀɴɴᴇᴅ
+broadcast - Broadcast 📢 a message without a forward tag
+grp_broadcast - Broadcast 📢 a messageS FOR GROUP without a forward tag```</details>
+</details>
 
 <details>
   <summary><b>How to Use :</b></summary>
