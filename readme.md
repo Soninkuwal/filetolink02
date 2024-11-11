@@ -178,7 +178,7 @@ broadcast - Broadcast 📢 a message without a forward tag
 grp_broadcast - Broadcast 📢 a messageS FOR GROUP without a forward tag
 ```
 
-
+</details>
 
 <details>
   <summary><b>How to Use :</b></summary>
