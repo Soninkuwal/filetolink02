@@ -167,14 +167,18 @@ DATABASE_URL=mongodb_uri
 
 <details>
   <summary><b>BOT COMMEND </b></summary>
-```start - Launch the application.
+  
+```py
+start - Launch the application.
 help - how downlod video
 users - GET ALL USER
 ban - ʜᴀs ʙᴇᴇɴ ʙᴀɴɴᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ
 unban - ʜᴀᴘᴘʏ ɴᴇᴡs ᴀʟᴇʀᴛ ᴛᴏ ᴛʜᴇ ᴜɴʙᴀɴɴᴇᴅ
 broadcast - Broadcast 📢 a message without a forward tag
-grp_broadcast - Broadcast 📢 a messageS FOR GROUP without a forward tag```</details>
-</details>
+grp_broadcast - Broadcast 📢 a messageS FOR GROUP without a forward tag
+```
+
+
 
 <details>
   <summary><b>How to Use :</b></summary>
