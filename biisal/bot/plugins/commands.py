@@ -22,7 +22,7 @@ SRT_TXT = """<b>ᴊᴀɪ sʜʀᴇᴇ ᴋʀsɴᴀ {}!,
 
 【💕❤️ MY FATHER❤️💕 】
    ❤️ KANHA MEENA KUWAL ⚡
-  <a href=https://t.me/Chatkanhabot>CONTACT ☎️ NOW</a>
+  <a href=https://t.me/KanhaContentbot>CONTACT ☎️ NOW</a>
      
 ╔══════════════════╗
  [📌 JOIN MOVIE GROUP 🎭 ] 
@@ -38,7 +38,7 @@ I AM FILE TO STREAM KANHA BOT 💖
 
 NOTE :- LINK NEVER DELETE 
 
-ᴍᴀɪɴᴛᴀɪɴᴇᴅ ʙʏ : <a href='https://telegram.me/Chatkanhabot'>❤️ sonic kuwal ❤️</a></b>"""
+ᴍᴀɪɴᴛᴀɪɴᴇᴅ ʙʏ : <a href='https://telegram.me/KanhaContentbot'>❤️ sonic kuwal ❤️</a></b>"""
 
 @StreamBot.on_message(filters.command("start") & filters.private )
 async def start(b, m):
@@ -243,7 +243,7 @@ async def cb_handler(client, query):
     
     elif data == "about":
         await query.message.edit_caption(
-            caption=f"<b>Mʏ ɴᴀᴍᴇ :<a href='https://t.me/Sonickuwalupdate'>{bot_name}</a>\nAᴅᴍɪɴ : <a href='https://telegram.me/Chatkanhabot'>KANHA</a>\nʜᴏsᴛᴇᴅ ᴏɴ : ʜᴇʀᴏᴋᴜ\nᴅᴀᴛᴀʙᴀsᴇ : ᴍᴏɴɢᴏ ᴅʙ\nʟᴀɴɢᴜᴀɢᴇ : ᴘʏᴛʜᴏɴ 3</b>",
+            caption=f"<b>Mʏ ɴᴀᴍᴇ :<a href='https://t.me/Sonickuwalupdate'>{bot_name}</a>\nAᴅᴍɪɴ : <a href='https://telegram.me/KanhaContentbot'>KANHA</a>\nʜᴏsᴛᴇᴅ ᴏɴ : ʜᴇʀᴏᴋᴜ\nᴅᴀᴛᴀʙᴀsᴇ : ᴍᴏɴɢᴏ ᴅʙ\nʟᴀɴɢᴜᴀɢᴇ : ᴘʏᴛʜᴏɴ 3</b>",
             reply_markup=InlineKeyboardMarkup(
                 [[ 
                      InlineKeyboardButton("ʜᴏᴍᴇ", callback_data="start"),
@@ -263,7 +263,7 @@ async def cb_handler(client, query):
     elif data == "about❤️":
         # please don't steal credit
         await query.message.edit_caption(
-            caption=f"<b>ᴊᴀɪ sʜʀᴇᴇ ᴋʀsɴᴀ ᴅᴇᴀʀ...\nɪᴍ <a href='https://t.me/Sonickuwalupdate'>KANHA ❤️</a>\nɪ ᴀᴍ ᴛʜᴇ ᴀᴅᴍɪɴ ᴏғ ᴛʜɪs ʙᴏᴛ..ᴀɴᴅ ɪ ᴍᴀᴅᴇ ᴛʜᴇ  ʙᴏᴛ ʙʏ ʜᴇʟᴘ ᴏғ <a href='https://telegram.me/Chatkanhabot'>kanha</a> ʙʀᴏ..\n\nGɪᴛʜᴜʙ : <a href='https://telegram.me/Chatkanhabot'>kanha Gɪᴛʜᴜʙ</a></b>",
+            caption=f"<b>ᴊᴀɪ sʜʀᴇᴇ ᴋʀsɴᴀ ᴅᴇᴀʀ...\nɪᴍ <a href='https://t.me/Sonickuwalupdate'>KANHA ❤️</a>\nɪ ᴀᴍ ᴛʜᴇ ᴀᴅᴍɪɴ ᴏғ ᴛʜɪs ʙᴏᴛ..ᴀɴᴅ ɪ ᴍᴀᴅᴇ ᴛʜᴇ  ʙᴏᴛ ʙʏ ʜᴇʟᴘ ᴏғ <a href='https://telegram.me/KanhaContentbot'>kanha</a> ʙʀᴏ..\n\nGɪᴛʜᴜʙ : <a href='https://telegram.me/KanhaContentbot'>kanha Gɪᴛʜᴜʙ</a></b>",
             reply_markup=InlineKeyboardMarkup(
                 [[ 
                      InlineKeyboardButton("ʜᴏᴍᴇ", callback_data="start"),
