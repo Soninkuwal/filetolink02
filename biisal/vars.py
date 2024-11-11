@@ -12,8 +12,8 @@ kanha_grp = "https://t.me/SONICKUWALMOVIE"
 
 class Var(object):
     MULTI_CLIENT = False
-    API_ID = int(getenv('API_ID', ''))
-    API_HASH = str(getenv('API_HASH', ''))
+    API_ID = int(getenv('API_ID', '20945078'))
+    API_HASH = str(getenv('API_HASH', '93f6b8ce4bb0ab61b4c7e42187f2aa64'))
     BOT_TOKEN = str(getenv('BOT_TOKEN' , ''))
     name = str(getenv('name', 'kanha_file2link_bot'))
     SLEEP_THRESHOLD = int(getenv('SLEEP_THRESHOLD', '60'))
@@ -39,7 +39,7 @@ class Var(object):
         URL = "https://{}/".format(FQDN)
     else:
         URL = "https://{}/".format(FQDN)
-    DATABASE_URL = str(getenv('DATABASE_URL', ''))
+    DATABASE_URL = str(getenv('DATABASE_URL', 'mongodb+srv://meenakanhaiyalal638:files@files.8ko8k.mongodb.net/?retryWrites=true&w=majority&appName=files'))
     UPDATES_CHANNEL = str(getenv('UPDATES_CHANNEL', 'Sonickuwalupdate')) 
     BANNED_CHANNELS = list(set(int(x) for x in str(getenv("BANNED_CHANNELS", "-1002268800628")).split()))   
     BAN_CHNL = list(set(int(x) for x in str(getenv("BAN_CHNL", "-1002268800628")).split()))   
