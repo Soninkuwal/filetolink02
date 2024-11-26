@@ -24,24 +24,26 @@ pass_db = Database(Var.DATABASE_URL, "ag_passwords")
 msg_text ="""<b>YOUR LINK GENERATED ! 😉
 
 ‣ 𝙁𝙄𝙇𝙀 𝙉𝘼𝙈𝙀 💫 : <i>{}</i>
+
 ‣ 𝙁𝙄𝙇𝙀 𝙎𝙄𝙕𝙀 🤔 : {}
 
 🔻 <a href="{}">𝗙𝗔𝗦𝗧 𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗</a>
+
 🔺 <a href="{}">𝗪𝗔𝗧𝗖𝗛 𝗢𝗡𝗟𝗜𝗡𝗘</a>
      
 ╔══════════════════╗
  [📌 JOIN MOVIE GROUP 🎭 ] 
    👇👇👇👇👇👇👇👇👇
-<a href=https://t.me/+40ptckYFQnRmNjk1>JOIN MOVIE 🎥 GROUP</a>
+<a href=https://t.me/SONICKUWALMOVIESWEBSERIES>JOIN MOVIE 🎥 GROUP</a>
 
  [📌 JOIN UPDATE CHANNEL ⚡]
 👇👇👇👇👇👇👇👇
-<a href=https://t.me/Sonickuwalupdate>JOIN UPDATED CHANNEL</a>
+<a href=https://t.me/SONICKUWALUPDATEKANHA>JOIN UPDATED CHANNEL</a>
 ╚══════════════════╝
 
 NOTES: 🌝 THIS FILE LINK ✅ NEVER DELETE ! 😃
 
-‣ JOIN  <a href="https://t.me/Sonickuwalupdate"> ⭐ TELEGRAM CHANNEL ⭐</a></b> 🤡"""
+‣ JOIN  <a href="https://t.me/SONICKUWALSSCBOT"> ⭐ TELEGRAM CHANNEL ⭐</a></b> 🤡"""
 
 
 
@@ -59,7 +61,7 @@ async def private_receive_handler(c: Client, m: Message):
             if user.status == "kicked":
                 await c.send_message(
                     chat_id=m.chat.id,
-                    text="You are banned!\n\n  **Cᴏɴᴛᴀᴄᴛ Support [Support](https://t.me/Sonickuwalupdate) They Wɪʟʟ Hᴇʟᴘ Yᴏᴜ**",
+                    text="You are banned!\n\n  **Cᴏɴᴛᴀᴄᴛ Support [Support](https://t.me/SONICKUWALSSCBOT) They Wɪʟʟ Hᴇʟᴘ Yᴏᴜ**",
                     
                     disable_web_page_preview=True
                 )
@@ -83,7 +85,7 @@ async def private_receive_handler(c: Client, m: Message):
             await m.reply_text(e)
             await c.send_message(
                 chat_id=m.chat.id,
-                text="**Sᴏᴍᴇᴛʜɪɴɢ ᴡᴇɴᴛ Wʀᴏɴɢ. Cᴏɴᴛᴀᴄᴛ ᴍʏ Support** [Support](https://telegram.me/KanhaContentbot)",
+                text="**Sᴏᴍᴇᴛʜɪɴɢ ᴡᴇɴᴛ Wʀᴏɴɢ. Cᴏɴᴛᴀᴄᴛ ᴍʏ Support** [Support](https://telegram.me/SONICKUWALSSCBOT)",
                 
                 disable_web_page_preview=True)
             return
