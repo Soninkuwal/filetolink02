@@ -12,7 +12,7 @@ kanha_grp = "https://t.me/SONICKUWALMOVIESWEBSERIES"
 
 class Var(object):
     MULTI_CLIENT = False
-    API_ID = int(getenv('API_ID', ''))
+    API_ID = str(getenv('API_ID', ''))
     API_HASH = str(getenv('API_HASH', ''))
     BOT_TOKEN = str(getenv('BOT_TOKEN' , ''))
     name = str(getenv('name', 'kanha_file2link_bot'))
