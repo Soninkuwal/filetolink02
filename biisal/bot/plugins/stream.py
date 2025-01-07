@@ -21,16 +21,18 @@ MY_PASS = os.environ.get("MY_PASS", None)
 pass_dict = {}
 pass_db = Database(Var.DATABASE_URL, "ag_passwords")
 
-msg_text ="""<b>YOUR LINK GENERATED ! 😉
+msg_text = """<b>YOUR LINK GENERATED ! 😉
 
 ‣ 𝙁𝙄𝙇𝙀 𝙉𝘼𝙈𝙀 💫 : <i>{}</i>
 
 ‣ 𝙁𝙄𝙇𝙀 𝙎𝙄𝙕𝙀 🤔 : {}
 
 🔻 <a href="{}">𝗙𝗔𝗦𝗧 𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗</a>
-
 🔺 <a href="{}">𝗪𝗔𝗧𝗖𝗛 𝗢𝗡𝗟𝗜𝗡𝗘</a>
-     
+
+🔥 <a href="{}">𝗢𝗣𝗘𝗡 𝗜𝗡 𝗠𝗫 𝗣𝗟𝗔𝗬𝗘𝗥</a>
+📽️ <a href="{}">𝗢𝗣𝗘𝗡 𝗜𝗡 𝗣𝗟𝗔𝗬𝗜𝗧 𝗣𝗟𝗔𝗬𝗘𝗥</a>
+
 ╔══════════════════╗
  [📌 JOIN MOVIE GROUP 🎭 ] 
    👇👇👇👇👇👇👇👇👇
@@ -44,6 +46,24 @@ msg_text ="""<b>YOUR LINK GENERATED ! 😉
 NOTES: 🌝 THIS FILE LINK ✅ NEVER DELETE ! 😃
 
 ‣ JOIN  <a href="https://t.me/SONICKUWALSSCBOT"> ⭐ TELEGRAM CHANNEL ⭐</a></b> 🤡"""
+
+# Example usage in reply_markup
+reply_markup = InlineKeyboardMarkup(
+    [
+        [  # Middle buttons
+            InlineKeyboardButton("WATCH ONLINE 🔺", url="stream_link_placeholder"),
+            InlineKeyboardButton("FAST DOWNLOAD 🔻", url="download_link_placeholder"),
+        ],
+        [  # MX Player and PlayIt Player buttons in the middle
+            InlineKeyboardButton("OPEN IN MX PLAYER 🎥", url="mx_player_link_placeholder"),
+            InlineKeyboardButton("OPEN IN PLAYIT PLAYER 📽️", url="playit_player_link_placeholder"),
+        ],
+        [  # Bottom buttons
+            InlineKeyboardButton("JOIN MOVIE GROUP 🎭", url="https://t.me/SONICKUWALMOVIESWEBSERIES"),
+            InlineKeyboardButton("JOIN UPDATE CHANNEL ⚡", url="https://t.me/SONICKUWALUPDATEKANHA"),
+        ]
+    ]
+)
 
 
 
