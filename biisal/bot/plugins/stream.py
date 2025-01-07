@@ -67,14 +67,13 @@ reply_markup = InlineKeyboardMarkup(
 
 
 
-
-@StreamBot.on_message((filters.private) & (filters.document | filters.video | filters.audio | filters.photo) , group=4)
+@StreamBot.on_message((filters.private) & (filters.document | filters.video | filters.audio | filters.photo), group=4)
 async def private_receive_handler(c: Client, m: Message):
     if not await db.is_user_exist(m.from_user.id):
         await db.add_user(m.from_user.id)
         await c.send_message(
             Var.BIN_CHANNEL,
-            f"New User Joined! : \n\n Name : [{m.from_user.first_name}](tg://user?id={m.from_user.id}) Started Your Bot!!"
+            f"New User Joined! : \n\nName : [{m.from_user.first_name}](tg://user?id={m.from_user.id}) Started Your Bot!!"
         )
     if Var.UPDATES_CHANNEL != "None":
         try:
@@ -82,8 +81,7 @@ async def private_receive_handler(c: Client, m: Message):
             if user.status == "kicked":
                 await c.send_message(
                     chat_id=m.chat.id,
-                    text="You are banned!\n\n  **Cᴏɴᴛᴀᴄᴛ Support [Support](https://t.me/SONICKUWALSSCBOT) They Wɪʟʟ Hᴇʟᴘ Yᴏᴜ**",
-                    
+                    text="You are banned!\n\n  **Contact Support [Support](https://t.me/SONICKUWALSSCBOT). They will help you.**",
                     disable_web_page_preview=True
                 )
                 return 
@@ -91,158 +89,106 @@ async def private_receive_handler(c: Client, m: Message):
             await c.send_photo(
                 chat_id=m.chat.id,
                 photo="https://graph.org/file/95a9fc09cc310c0c8cd6f.jpg",
-                caption=""""<b>Hᴇʏ ᴛʜᴇʀᴇ!\n\nPʟᴇᴀsᴇ ᴊᴏɪɴ ᴏᴜʀ ᴜᴘᴅᴀᴛᴇs ᴄʜᴀɴɴᴇʟ ᴛᴏ ᴜsᴇ ᴍᴇ ! 😊\n\nDᴜᴇ ᴛᴏ sᴇʀᴠᴇʀ ᴏᴠᴇʀʟᴏᴀᴅ, ᴏɴʟʏ ᴏᴜʀ ᴄʜᴀɴɴᴇʟ sᴜʙsᴄʀɪʙᴇʀs ᴄᴀɴ ᴜsᴇ ᴛʜɪs ʙᴏᴛ !</b>""",
+                caption="""<b>Hey there!\n\nPlease join our updates channel to use me! 😊\n\nDue to server overload, only our channel subscribers can use this bot!</b>""",
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [
-                            InlineKeyboardButton("Jᴏɪɴ ɴᴏᴡ 🚩", url=f"https://t.me/{Var.UPDATES_CHANNEL}")
+                            InlineKeyboardButton("Join Now 🚩", url=f"https://t.me/{Var.UPDATES_CHANNEL}")
                         ]
                     ]
                 ),
-                
             )
             return
         except Exception as e:
             await m.reply_text(e)
             await c.send_message(
                 chat_id=m.chat.id,
-                text="**Sᴏᴍᴇᴛʜɪɴɢ ᴡᴇɴᴛ Wʀᴏɴɢ. Cᴏɴᴛᴀᴄᴛ ᴍʏ Support** [Support](https://telegram.me/SONICKUWALSSCBOT)",
-                
-                disable_web_page_preview=True)
+                text="**Something went wrong. Contact my Support** [Support](https://telegram.me/SONICKUWALSSCBOT)",
+                disable_web_page_preview=True
+            )
             return
     ban_chk = await db.is_banned(int(m.from_user.id))
-    if ban_chk == True:
+    if ban_chk:
         return await m.reply(Var.BAN_ALERT)
-try:
-    log_msg = await m.forward(chat_id=Var.BIN_CHANNEL)
-    stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
-    online_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
-    mx_player_link = f"intent://{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}#Intent;package=com.mxtech.videoplayer.ad;end;"
-    playit_player_link = f"intent://{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}#Intent;package=com.playit.videoplayer;end;"
+    try:
+        log_msg = await m.forward(chat_id=Var.BIN_CHANNEL)
+        stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
+        online_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
 
-    await log_msg.reply_text(
-        text=f"**RᴇQᴜᴇꜱᴛᴇᴅ ʙʏ :** [{m.from_user.first_name}](tg://user?id={m.from_user.id})\n**Uꜱᴇʀ ɪᴅ :** `{m.from_user.id}`\n**Stream ʟɪɴᴋ :** {stream_link}",
-        disable_web_page_preview=True,
-        quote=True
-    )
-    await m.reply_text(
-        text=msg_text.format(get_name(log_msg), humanbytes(get_media_file_size(m)), online_link, stream_link),
-        quote=True,
-        disable_web_page_preview=True,
-        reply_markup=InlineKeyboardMarkup([
-            [
-                InlineKeyboardButton("WATCH ONLINE 🔺", url=stream_link),  # Stream Link
-                InlineKeyboardButton('FAST DOWNLOAD 🔻', url=online_link)  # Download Link
-            ],
-            [
-                InlineKeyboardButton("OPEN IN MX PLAYER 🎥", url=mx_player_link),  # MX Player Link
-                InlineKeyboardButton("OPEN IN PLAYIT PLAYER 📽️", url=playit_player_link)  # PlayIt Player Link
-            ]
-        ])
-    )
-except Exception as e:
-    print(f"Error: {e}")
-     
-
-except FloodWait as e:
-    wait_time = e.x
-    user_name = m.from_user.first_name
-    user_id = m.from_user.id
-
-    # Log the FloodWait
-    print(f"FloodWait triggered. Sleeping for {wait_time} seconds.")
-
-    # Pause execution for the required duration
-    await asyncio.sleep(wait_time)
-
-    # Notify admins in BIN_CHANNEL
-    await c.send_message(
-        chat_id=Var.BIN_CHANNEL,
-        text=(
-            f"Gᴏᴛ FʟᴏᴏᴅWᴀɪᴛ ᴏғ {wait_time}s from "
-            f"[{user_name}](tg://user?id={user_id})\n\n"
-            f"**𝚄𝚜𝚎𝚛 𝙸𝙳 :** `{user_id}`"
-        ),
-        disable_web_page_preview=True
- )
+        await log_msg.reply_text(
+            text=f"**Requested by:** [{m.from_user.first_name}](tg://user?id={m.from_user.id})\n**User ID:** `{m.from_user.id}`\n**Stream Link:** {stream_link}",
+            disable_web_page_preview=True,
+            quote=True
+        )
+        await m.reply_text(
+            text=msg_text.format(get_name(log_msg), humanbytes(get_media_file_size(m)), online_link, stream_link),
+            quote=True,
+            disable_web_page_preview=True,
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton("WATCH ONLINE 🔺", url=stream_link),
+                        InlineKeyboardButton("FAST DOWNLOAD 🔻", url=online_link)
+                    ],
+                    [
+                        InlineKeyboardButton("MX Player 🔹", url=f"intent://{stream_link}#Intent;package=com.mxtech.videoplayer.ad;end"),
+                        InlineKeyboardButton("PlayIt Player 🔸", url=f"intent://{stream_link}#Intent;package=com.playit.videoplayer;end")
+                    ]
+                ]
+            )
+        )
+    except FloodWait as e:
+        print(f"Sleeping for {str(e.x)}s")
+        await asyncio.sleep(e.x)
+        await c.send_message(
+            chat_id=Var.BIN_CHANNEL,
+            text=f"Got FloodWait of {str(e.x)}s from [{m.from_user.first_name}](tg://user?id={m.from_user.id})\n\n**User ID:** `{str(m.from_user.id)}`",
+            disable_web_page_preview=True
+)
 
 
-
-@StreamBot.on_message(filters.channel & ~filters.group & (filters.document | filters.video | filters.photo)  & ~filters.forwarded, group=-1)
+@StreamBot.on_message(filters.channel & ~filters.group & (filters.document | filters.video | filters.photo) & ~filters.forwarded, group=-1)
 async def channel_receive_handler(bot, broadcast):
     if int(broadcast.chat.id) in Var.BAN_CHNL:
-        print("chat trying to get straming link is found in BAN_CHNL,so im not going to give stram link")
+        print("Chat trying to get streaming link is found in BAN_CHNL, so not providing stream link")
         return
     ban_chk = await db.is_banned(int(broadcast.chat.id))
     if (int(broadcast.chat.id) in Var.BANNED_CHANNELS) or (ban_chk == True):
         await bot.leave_chat(broadcast.chat.id)
         return
-try:
-    log_msg = await broadcast.forward(chat_id=Var.BIN_CHANNEL)
-    stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
-    online_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
-    mx_player_link = f"intent://{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}#Intent;package=com.mxtech.videoplayer.ad;end;"
-    playit_player_link = f"intent://{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}#Intent;package=com.playit.videoplayer;end;"
-
-    await log_msg.reply_text(
-        text=f"**Channel Name:** `{broadcast.chat.title}`\n**CHANNEL ID:** `{broadcast.chat.id}`\n**Rᴇǫᴜᴇsᴛ ᴜʀʟ:** {stream_link}",
-        quote=True
-    )
-    await bot.edit_message_reply_markup(
-        chat_id=broadcast.chat.id,
-        message_id=broadcast.id,
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton("WATCH ONLINE 🔺", url=stream_link),
-                    InlineKeyboardButton("FAST DOWNLOAD 🔻", url=online_link)
-                ],
-                [
-                    InlineKeyboardButton("OPEN IN MX PLAYER 🎥", url=mx_player_link),
-                    InlineKeyboardButton("OPEN IN PLAYIT PLAYER 📽️", url=playit_player_link)
-                ]
-            ]
+    try:
+        log_msg = await broadcast.forward(chat_id=Var.BIN_CHANNEL)
+        stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
+        online_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
+        await log_msg.reply_text(
+            text=f"**Channel Name:** `{broadcast.chat.title}`\n**CHANNEL ID:** `{broadcast.chat.id}`\n**Requested URL:** {stream_link}",
+            quote=True
         )
-    )
-except Exception as e:
-    print(f"Error: {e}")
+        await bot.edit_message_reply_markup(
+            chat_id=broadcast.chat.id,
+            message_id=broadcast.id,
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [InlineKeyboardButton("WATCH ONLINE 🔺", url=stream_link),
+                     InlineKeyboardButton("FAST DOWNLOAD 🔻", url=online_link)],
+                    [InlineKeyboardButton("MX Player 🔹", url=f"intent://{stream_link}#Intent;package=com.mxtech.videoplayer.ad;end"),
+                     InlineKeyboardButton("PlayIt Player 🔸", url=f"intent://{stream_link}#Intent;package=com.playit.videoplayer;end")]
+                ]
+            )
+        )
+    except FloodWait as w:
+        print(f"Sleeping for {str(w.x)}s")
+        await asyncio.sleep(w.x)
+        await bot.send_message(
+            chat_id=Var.BIN_CHANNEL,
+            text=f"GOT FLOODWAIT OF {str(w.x)}s FROM {broadcast.chat.title}\n\n**CHANNEL ID:** `{str(broadcast.chat.id)}`",
+            disable_web_page_preview=True
+        )
+    except Exception as e:
+        await bot.send_message(
+            chat_id=Var.BIN_CHANNEL,
+            text=f"**#ERROR_TRACEBACK:** `{e}`",
+            disable_web_page_preview=True
+        )
+        print(f"Can't edit broadcast message!\nError: **Give me edit permission in updates and bin Channel! {e}**")
      
-except FloodWait as w:
-    # Log FloodWait duration
-    wait_time = w.x
-    chat_title = broadcast.chat.title
-    chat_id = broadcast.chat.id
-
-    print(f"FloodWait triggered. Sleeping for {wait_time} seconds.")
-
-    # Pause execution for the required duration
-    await asyncio.sleep(wait_time)
-
-    # Notify admins about the FloodWait
-    await bot.send_message(
-        chat_id=Var.BIN_CHANNEL,
-        text=(
-            f"GOT FLOODWAIT OF {wait_time}s FROM {chat_title}\n\n"
-            f"**CHANNEL ID:** `{chat_id}`"
-        ),
-        disable_web_page_preview=True
-    )
-
-except Exception as e:
-    # Capture the exception details
-    error_message = str(e)
-
-    # Notify admins about the error
-    await bot.send_message(
-        chat_id=Var.BIN_CHANNEL,
-        text=f"**#ERROR_TRACEBACK:** `{error_message}`",
-        disable_web_page_preview=True
-    )
-
-    # Log the error for debugging purposes
-    print(
-        f"Can't edit broadcast message!\n"
-        f"Error: {error_message}\n"
-        f"Ensure the bot has edit permissions in updates and bin channels."
- )
- 
