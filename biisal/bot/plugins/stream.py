@@ -109,15 +109,14 @@ async def private_receive_handler(c: Client, m: Message):
                 [
                     [
                         InlineKeyboardButton("WATCH ONLINE 🔺", url=stream_link),
-                        InlineKeyboardButton("FAST DOWNLOAD 🔻", url=online_link)
-                    ],
-                    [
-                        InlineKeyboardButton("MX Player 🔹", url=f"intent://{stream_link}#Intent;package=com.mxtech.videoplayer.ad;end"),
-                        InlineKeyboardButton("PlayIt Player 🔸", url=f"intent://{stream_link}#Intent;package=com.playit.videoplayer;end")
+                        InlineKeyboardButton("FAST DOWNLOAD 🔻", url=online_link),
+                        InlineKeyboardButton("MX Player 🔹", url=stream_link),
+                        InlineKeyboardButton("PlayIt Player 🔸", url=stream_link)
+                    
                     ]
                 ]
             )
-     )
+     
     except FloodWait as e:
         print(f"Sleeping for {str(e.x)}s")
         await asyncio.sleep(e.x)
@@ -145,11 +144,11 @@ async def channel_receive_handler(bot, broadcast):
             message_id=broadcast.id,
             reply_markup=InlineKeyboardMarkup(
                 [
-                   [InlineKeyboardButton("WATCH ONLINE 🔺", url=stream_link),
-                     InlineKeyboardButton("FAST DOWNLOAD 🔻", url=online_link)],
-                    [InlineKeyboardButton("MX Player 🔹", url=f"intent://{stream_link}#Intent;package=com.mxtech.videoplayer.ad;end"),
-                     InlineKeyboardButton("PlayIt Player 🔸", url=f"intent://{stream_link}#Intent;package=com.playit.videoplayer;end")]
-              ] 
+                    [InlineKeyboardButton("WATCH ONLINE 🔺", url=stream_link),
+                    InlineKeyboardButton('FAST DOWNLOAD 🔻', url=online_link),
+                    InlineKeyboardButton("MX Player 🔹", url=stream_link),
+                    InlineKeyboardButton("PlayIt Player 🔸", url=stream_link)] 
+                ]
             )
         )
     except FloodWait as w:
