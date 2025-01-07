@@ -21,16 +21,18 @@ MY_PASS = os.environ.get("MY_PASS", None)
 pass_dict = {}
 pass_db = Database(Var.DATABASE_URL, "ag_passwords")
 
-msg_text ="""<b>YOUR LINK GENERATED ! 😉
+msg_text = """<b>YOUR LINK GENERATED ! 😉
 
 ‣ 𝙁𝙄𝙇𝙀 𝙉𝘼𝙈𝙀 💫 : <i>{}</i>
 
 ‣ 𝙁𝙄𝙇𝙀 𝙎𝙄𝙕𝙀 🤔 : {}
 
 🔻 <a href="{}">𝗙𝗔𝗦𝗧 𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗</a>
-
 🔺 <a href="{}">𝗪𝗔𝗧𝗖𝗛 𝗢𝗡𝗟𝗜𝗡𝗘</a>
-     
+
+🔥 <a href="{}">𝗢𝗣𝗘𝗡 𝗜𝗡 𝗠𝗫 𝗣𝗟𝗔𝗬𝗘𝗥</a>
+📽️ <a href="{}">𝗢𝗣𝗘𝗡 𝗜𝗡 𝗣𝗟𝗔𝗬𝗜𝗧 𝗣𝗟𝗔𝗬𝗘𝗥</a>
+
 ╔══════════════════╗
  [📌 JOIN MOVIE GROUP 🎭 ] 
    👇👇👇👇👇👇👇👇👇
@@ -44,6 +46,25 @@ msg_text ="""<b>YOUR LINK GENERATED ! 😉
 NOTES: 🌝 THIS FILE LINK ✅ NEVER DELETE ! 😃
 
 ‣ JOIN  <a href="https://t.me/SONICKUWALSSCBOT"> ⭐ TELEGRAM CHANNEL ⭐</a></b> 🤡"""
+
+# Example usage in reply_markup
+reply_markup = InlineKeyboardMarkup(
+    [
+        [  # Middle buttons
+            InlineKeyboardButton("WATCH ONLINE 🔺", url="stream_link_placeholder"),
+            InlineKeyboardButton("FAST DOWNLOAD 🔻", url="download_link_placeholder"),
+        ],
+        [  # MX Player and PlayIt Player buttons in the middle
+            InlineKeyboardButton("OPEN IN MX PLAYER 🎥", url="mx_player_link_placeholder"),
+            InlineKeyboardButton("OPEN IN PLAYIT PLAYER 📽️", url="playit_player_link_placeholder"),
+        ],
+        [  # Bottom buttons
+            InlineKeyboardButton("JOIN MOVIE GROUP 🎭", url="https://t.me/SONICKUWALMOVIESWEBSERIES"),
+            InlineKeyboardButton("JOIN UPDATE CHANNEL ⚡", url="https://t.me/SONICKUWALUPDATEKANHA"),
+        ]
+    ]
+)
+
 
 
 
@@ -92,19 +113,36 @@ async def private_receive_handler(c: Client, m: Message):
     ban_chk = await db.is_banned(int(m.from_user.id))
     if ban_chk == True:
         return await m.reply(Var.BAN_ALERT)
-    try:
-        log_msg = await m.forward(chat_id=Var.BIN_CHANNEL)
-        stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
-        online_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
+try:
+    log_msg = await m.forward(chat_id=Var.BIN_CHANNEL)
+    stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
+    online_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
+    mx_player_link = f"intent://{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}#Intent;package=com.mxtech.videoplayer.ad;end;"
+    playit_player_link = f"intent://{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}#Intent;package=com.playit.videoplayer;end;"
 
-        await log_msg.reply_text(text=f"**RᴇQᴜᴇꜱᴛᴇᴅ ʙʏ :** [{m.from_user.first_name}](tg://user?id={m.from_user.id})\n**Uꜱᴇʀ ɪᴅ :** `{m.from_user.id}`\n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True,  quote=True)
-        await m.reply_text(
-            text=msg_text.format(get_name(log_msg), humanbytes(get_media_file_size(m)), online_link, stream_link),
-            quote=True,
-            disable_web_page_preview=True,
-            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("WATCH ONLINE 🔺", url=stream_link), #Stream Link
-                                                InlineKeyboardButton('FAST DOWNLOAD 🔻', url=online_link)]]) #Download Link
-        )
+    await log_msg.reply_text(
+        text=f"**RᴇQᴜᴇꜱᴛᴇᴅ ʙʏ :** [{m.from_user.first_name}](tg://user?id={m.from_user.id})\n**Uꜱᴇʀ ɪᴅ :** `{m.from_user.id}`\n**Stream ʟɪɴᴋ :** {stream_link}",
+        disable_web_page_preview=True,
+        quote=True
+    )
+    await m.reply_text(
+        text=msg_text.format(get_name(log_msg), humanbytes(get_media_file_size(m)), online_link, stream_link),
+        quote=True,
+        disable_web_page_preview=True,
+        reply_markup=InlineKeyboardMarkup([
+            [
+                InlineKeyboardButton("WATCH ONLINE 🔺", url=stream_link),  # Stream Link
+                InlineKeyboardButton('FAST DOWNLOAD 🔻', url=online_link)  # Download Link
+            ],
+            [
+                InlineKeyboardButton("OPEN IN MX PLAYER 🎥", url=mx_player_link),  # MX Player Link
+                InlineKeyboardButton("OPEN IN PLAYIT PLAYER 📽️", url=playit_player_link)  # PlayIt Player Link
+            ]
+        ])
+    )
+except Exception as e:
+    print(f"Error: {e}")
+     
     except FloodWait as e:
         print(f"Sleeping for {str(e.x)}s")
         await asyncio.sleep(e.x)
@@ -119,24 +157,36 @@ async def channel_receive_handler(bot, broadcast):
     if (int(broadcast.chat.id) in Var.BANNED_CHANNELS) or (ban_chk == True):
         await bot.leave_chat(broadcast.chat.id)
         return
-    try:
-        log_msg = await broadcast.forward(chat_id=Var.BIN_CHANNEL)
-        stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
-        online_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
-        await log_msg.reply_text(
-            text=f"**Channel Name:** `{broadcast.chat.title}`\n**CHANNEL ID:** `{broadcast.chat.id}`\n**Rᴇǫᴜᴇsᴛ ᴜʀʟ:** {stream_link}",
-            quote=True
-        )
-        await bot.edit_message_reply_markup(
-            chat_id=broadcast.chat.id,
-            message_id=broadcast.id,
-            reply_markup=InlineKeyboardMarkup(
+try:
+    log_msg = await broadcast.forward(chat_id=Var.BIN_CHANNEL)
+    stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
+    online_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
+    mx_player_link = f"intent://{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}#Intent;package=com.mxtech.videoplayer.ad;end;"
+    playit_player_link = f"intent://{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}#Intent;package=com.playit.videoplayer;end;"
+
+    await log_msg.reply_text(
+        text=f"**Channel Name:** `{broadcast.chat.title}`\n**CHANNEL ID:** `{broadcast.chat.id}`\n**Rᴇǫᴜᴇsᴛ ᴜʀʟ:** {stream_link}",
+        quote=True
+    )
+    await bot.edit_message_reply_markup(
+        chat_id=broadcast.chat.id,
+        message_id=broadcast.id,
+        reply_markup=InlineKeyboardMarkup(
+            [
                 [
-                    [InlineKeyboardButton("WATCH ONLINE 🔺", url=stream_link),
-                    InlineKeyboardButton('FAST DOWNLOAD 🔻', url=online_link)] 
+                    InlineKeyboardButton("WATCH ONLINE 🔺", url=stream_link),
+                    InlineKeyboardButton("FAST DOWNLOAD 🔻", url=online_link)
+                ],
+                [
+                    InlineKeyboardButton("OPEN IN MX PLAYER 🎥", url=mx_player_link),
+                    InlineKeyboardButton("OPEN IN PLAYIT PLAYER 📽️", url=playit_player_link)
                 ]
-            )
+            ]
         )
+    )
+except Exception as e:
+    print(f"Error: {e}")
+     
     except FloodWait as w:
         print(f"Sleeping for {str(w.x)}s")
         await asyncio.sleep(w.x)
