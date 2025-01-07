@@ -107,7 +107,7 @@ async def private_receive_handler(c: Client, m: Message):
             [InlineKeyboardButton("WATCH ONLINE 🔺", url=stream_link),  # Stream Link
              InlineKeyboardButton("FAST DOWNLOAD 🔻", url=online_link)],  # Download Link
             [InlineKeyboardButton("MX Player 🔹", url=f"intent://{stream_link}#Intent;package=com.mxtech.videoplayer.ad;end"),  # MX Player Intent
-             InlineKeyboardButton("PlayIt Player 🔸", url=f"intent://{stream_l ink}#Intent;package=com.playit.videoplayer;end")]  # PlayIt Player Intent
+             InlineKeyboardButton("PlayIt Player 🔸", url=f"intent://{stream_link}#Intent;package=com.playit.videoplayer;end")]  # PlayIt Player Intent
         ]
     )
         )
