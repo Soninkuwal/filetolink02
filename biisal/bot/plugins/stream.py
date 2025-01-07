@@ -13,7 +13,6 @@ from pyrogram.errors import FloodWait, UserNotParticipant
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 
 from urllib.parse import quote_plus
-from telegram import InlineKeyboardMarkup, InlineKeyboardButton
 #from utils_bot import get_shortlink
 
 from biisal.utils.file_properties import get_name, get_hash, get_media_file_size
