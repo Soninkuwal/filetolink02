@@ -143,10 +143,30 @@ try:
 except Exception as e:
     print(f"Error: {e}")
      
-    except FloodWait as e:
-        print(f"Sleeping for {str(e.x)}s")
-        await asyncio.sleep(e.x)
-        await c.send_message(chat_id=Var.BIN_CHANNEL, text=f"Gᴏᴛ FʟᴏᴏᴅWᴀɪᴛ ᴏғ {str(e.x)}s from [{m.from_user.first_name}](tg://user?id={m.from_user.id})\n\n**𝚄𝚜𝚎𝚛 𝙸𝙳 :** `{str(m.from_user.id)}`", disable_web_page_preview=True)
+
+except FloodWait as e:
+    wait_time = e.x
+    user_name = m.from_user.first_name
+    user_id = m.from_user.id
+
+    # Log the FloodWait
+    print(f"FloodWait triggered. Sleeping for {wait_time} seconds.")
+
+    # Pause execution for the required duration
+    await asyncio.sleep(wait_time)
+
+    # Notify admins in BIN_CHANNEL
+    await c.send_message(
+        chat_id=Var.BIN_CHANNEL,
+        text=(
+            f"Gᴏᴛ FʟᴏᴏᴅWᴀɪᴛ ᴏғ {wait_time}s from "
+            f"[{user_name}](tg://user?id={user_id})\n\n"
+            f"**𝚄𝚜𝚎𝚛 𝙸𝙳 :** `{user_id}`"
+        ),
+        disable_web_page_preview=True
+ )
+
+
 
 @StreamBot.on_message(filters.channel & ~filters.group & (filters.document | filters.video | filters.photo)  & ~filters.forwarded, group=-1)
 async def channel_receive_handler(bot, broadcast):
