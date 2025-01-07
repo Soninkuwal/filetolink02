@@ -100,18 +100,19 @@ async def private_receive_handler(c: Client, m: Message):
         )
         
         await m.reply_text(
-            text=msg_text.format(get_name(log_msg), humanbytes(get_media_file_size(m)), online_link, stream_link),
-            quote=True,
-            disable_web_page_preview=True,
-            reply_markup=InlineKeyboardMarkup(
-                [
-                    [InlineKeyboardButton("WATCH ONLINE 🔺", url=stream_link),  # Stream Link
-                    InlineKeyboardButton('FAST DOWNLOAD 🔻', url=online_link)],  # Download Link
-                    [InlineKeyboardButton('Open in MX Player 🎥', url=f"mxplayer://{stream_link}"),  # MX Player Link
-                    InlineKeyboardButton('Open in Playit Player 🎬', url=f"playit://{stream_link}")]  # Playit Player Link
-                ]
-            )
-        )
+    text=msg_text.format(get_name(log_msg), humanbytes(get_media_file_size(m)), online_link, stream_link),
+    quote=True,
+    disable_web_page_preview=True,
+    reply_markup=InlineKeyboardMarkup(
+        [
+            [InlineKeyboardButton("WATCH ONLINE 🔺", url=stream_link),  # Stream Link
+             InlineKeyboardButton('FAST DOWNLOAD 🔻', url=online_link)],  # Download Link
+            [InlineKeyboardButton('Open in MX Player 🎥', url=f"https://mxplayer.com/open?url={quote_plus(stream_link)}"),  # MX Player Redirection URL
+             InlineKeyboardButton('Open in Playit Player 🎬', url=f"https://playit.com/open?url={quote_plus(stream_link)}")]  # Playit Player Redirection URL
+        ]
+    )
+)
+
     except FloodWait as e:
         print(f"Sleeping for {str(e.x)}s")
         await asyncio.sleep(e.x)
