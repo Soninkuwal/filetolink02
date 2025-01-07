@@ -47,25 +47,6 @@ NOTES: 🌝 THIS FILE LINK ✅ NEVER DELETE ! 😃
 
 ‣ JOIN  <a href="https://t.me/SONICKUWALSSCBOT"> ⭐ TELEGRAM CHANNEL ⭐</a></b> 🤡"""
 
-# Example usage in reply_markup
-reply_markup = InlineKeyboardMarkup(
-    [
-        [  # Middle buttons
-            InlineKeyboardButton("WATCH ONLINE 🔺", url="stream_link_placeholder"),
-            InlineKeyboardButton("FAST DOWNLOAD 🔻", url="download_link_placeholder"),
-        ],
-        [  # MX Player and PlayIt Player buttons in the middle
-            InlineKeyboardButton("OPEN IN MX PLAYER 🎥", url="mx_player_link_placeholder"),
-            InlineKeyboardButton("OPEN IN PLAYIT PLAYER 📽️", url="playit_player_link_placeholder"),
-        ],
-        [  # Bottom buttons
-            InlineKeyboardButton("JOIN MOVIE GROUP 🎭", url="https://t.me/SONICKUWALMOVIESWEBSERIES"),
-            InlineKeyboardButton("JOIN UPDATE CHANNEL ⚡", url="https://t.me/SONICKUWALUPDATEKANHA"),
-        ]
-    ]
-)
-
-
 
 @StreamBot.on_message((filters.private) & (filters.document | filters.video | filters.audio | filters.photo), group=4)
 async def private_receive_handler(c: Client, m: Message):
