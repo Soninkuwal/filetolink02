@@ -30,9 +30,6 @@ msg_text = """<b>YOUR LINK GENERATED ! 😉
 🔻 <a href="{}">𝗙𝗔𝗦𝗧 𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗</a>
 🔺 <a href="{}">𝗪𝗔𝗧𝗖𝗛 𝗢𝗡𝗟𝗜𝗡𝗘</a>
 
-🔥 <a href="{}">𝗢𝗣𝗘𝗡 𝗜𝗡 𝗠𝗫 𝗣𝗟𝗔𝗬𝗘𝗥</a>
-📽️ <a href="{}">𝗢𝗣𝗘𝗡 𝗜𝗡 𝗣𝗟𝗔𝗬𝗜𝗧 𝗣𝗟𝗔𝗬𝗘𝗥</a>
-
 ╔══════════════════╗
  [📌 JOIN MOVIE GROUP 🎭 ] 
    👇👇👇👇👇👇👇👇👇
@@ -47,27 +44,8 @@ NOTES: 🌝 THIS FILE LINK ✅ NEVER DELETE ! 😃
 
 ‣ JOIN  <a href="https://t.me/SONICKUWALSSCBOT"> ⭐ TELEGRAM CHANNEL ⭐</a></b> 🤡"""
 
-# Example usage in reply_markup
-reply_markup = InlineKeyboardMarkup(
-    [
-        [  # Middle buttons
-            InlineKeyboardButton("WATCH ONLINE 🔺", url="stream_link_placeholder"),
-            InlineKeyboardButton("FAST DOWNLOAD 🔻", url="download_link_placeholder"),
-        ],
-        [  # MX Player and PlayIt Player buttons in the middle
-            InlineKeyboardButton("OPEN IN MX PLAYER 🎥", url="mx_player_link_placeholder"),
-            InlineKeyboardButton("OPEN IN PLAYIT PLAYER 📽️", url="playit_player_link_placeholder"),
-        ],
-        [  # Bottom buttons
-            InlineKeyboardButton("JOIN MOVIE GROUP 🎭", url="https://t.me/SONICKUWALMOVIESWEBSERIES"),
-            InlineKeyboardButton("JOIN UPDATE CHANNEL ⚡", url="https://t.me/SONICKUWALUPDATEKANHA"),
-        ]
-    ]
-)
 
-
-
-@StreamBot.on_message((filters.private) & (filters.document | filters.video | filters.audio | filters.photo) , group=4)
+@StreamBot.on_message((filters.private) & (filters.document | filters.video | filters.audio | filters.photo), group=4)
 async def private_receive_handler(c: Client, m: Message):
     if not await db.is_user_exist(m.from_user.id):
         await db.add_user(m.from_user.id)
@@ -82,7 +60,6 @@ async def private_receive_handler(c: Client, m: Message):
                 await c.send_message(
                     chat_id=m.chat.id,
                     text="You are banned!\n\n  **Cᴏɴᴛᴀᴄᴛ Support [Support](https://t.me/SONICKUWALSSCBOT) They Wɪʟʟ Hᴇʟᴘ Yᴏᴜ**",
-                    
                     disable_web_page_preview=True
                 )
                 return 
@@ -98,7 +75,6 @@ async def private_receive_handler(c: Client, m: Message):
                         ]
                     ]
                 ),
-                
             )
             return
         except Exception as e:
@@ -106,8 +82,8 @@ async def private_receive_handler(c: Client, m: Message):
             await c.send_message(
                 chat_id=m.chat.id,
                 text="**Sᴏᴍᴇᴛʜɪɴɢ ᴡᴇɴᴛ Wʀᴏɴɢ. Cᴏɴᴛᴀᴄᴛ ᴍʏ Support** [Support](https://telegram.me/SONICKUWALSSCBOT)",
-                
-                disable_web_page_preview=True)
+                disable_web_page_preview=True
+            )
             return
     ban_chk = await db.is_banned(int(m.from_user.id))
     if ban_chk == True:
@@ -117,26 +93,31 @@ async def private_receive_handler(c: Client, m: Message):
         stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
         online_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
 
-        await log_msg.reply_text(text=f"**RᴇQᴜᴇꜱᴛᴇᴅ ʙʏ :** [{m.from_user.first_name}](tg://user?id={m.from_user.id})\n**Uꜱᴇʀ ɪᴅ :** `{m.from_user.id}`\n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True,  quote=True)
-        await m.reply_text(
-    text=msg_text.format(get_name(log_msg), humanbytes(get_media_file_size(m)), online_link, stream_link, stream_link, stream_link),
-    quote=True,
-    disable_web_page_preview=True,
-    reply_markup=InlineKeyboardMarkup(
-        [
-            [InlineKeyboardButton("WATCH ONLINE 🔺", url=stream_link),  # Stream Link
-             InlineKeyboardButton("FAST DOWNLOAD 🔻", url=online_link)],  # Download Link
-            [InlineKeyboardButton("MX Player 🔹", url=f"intent://{stream_link}#Intent;package=com.mxtech.videoplayer.ad;end"),  # MX Player Intent
-             InlineKeyboardButton("PlayIt Player 🔸", url=f"intent://{stream_link}#Intent;package=com.playit.videoplayer;end")]  # PlayIt Player Intent
-        ]
-    )
+        await log_msg.reply_text(
+            text=f"**RᴇQᴜᴇꜱᴛᴇᴅ ʙʏ :** [{m.from_user.first_name}](tg://user?id={m.from_user.id})\n**Uꜱᴇʀ ɪᴅ :** `{m.from_user.id}`\n**Stream ʟɪɴᴋ :** {stream_link}",
+            disable_web_page_preview=True,  
+            quote=True
         )
-   
-     
+        
+        await m.reply_text(
+            text=msg_text.format(get_name(log_msg), humanbytes(get_media_file_size(m)), online_link, stream_link),
+            quote=True,
+            disable_web_page_preview=True,
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [InlineKeyboardButton("WATCH ONLINE 🔺", url=stream_link),  # Stream Link
+                    InlineKeyboardButton('FAST DOWNLOAD 🔻', url=online_link)],  # Download Link
+                    [InlineKeyboardButton('Open in MX Player 🎥', url=f"mxplayer://{stream_link}"),  # MX Player Link
+                    InlineKeyboardButton('Open in Playit Player 🎬', url=f"playit://{stream_link}")]  # Playit Player Link
+                ]
+            )
+        )
     except FloodWait as e:
         print(f"Sleeping for {str(e.x)}s")
         await asyncio.sleep(e.x)
-        await c.send_message(chat_id=Var.BIN_CHANNEL, text=f"Gᴏᴛ FʟᴏᴏᴅWᴀɪᴛ ᴏғ {str(e.x)}s from [{m.from_user.first_name}](tg://user?id={m.from_user.id})\n\n**𝚄𝚜𝚎𝚛 𝙸𝙳 :** `{str(m.from_user.id)}`", disable_web_page_preview=True)
+        await c.send_message(chat_id=Var.BIN_CHANNEL, text=f"Gᴏᴛ FʟᴏᴏᴅWᴀɪᴛ ᴏғ {str(e.x)}s from [{m.from_user.first_name}](tg://user?id={m.from_user.id})\n\n**𝚄𝚂𝙴𝚁 𝙸𝙳 :** `{str(m.from_user.id)}`", disable_web_page_preview=True)
+
+
 
 @StreamBot.on_message(filters.channel & ~filters.group & (filters.document | filters.video | filters.photo)  & ~filters.forwarded, group=-1)
 async def channel_receive_handler(bot, broadcast):
@@ -162,9 +143,7 @@ async def channel_receive_handler(bot, broadcast):
         [
             [InlineKeyboardButton("WATCH ONLINE 🔺", url=stream_link),
              InlineKeyboardButton("FAST DOWNLOAD 🔻", url=online_link)],
-            [InlineKeyboardButton("MX Player 🔹", url=f"intent://{stream_link}#Intent;package=com.mxtech.videoplayer.ad;end"),
-             InlineKeyboardButton("PlayIt Player 🔸", url=f"intent://{stream_link}#Intent;package=com.playit.videoplayer;end")]
-        ]
+     ]
     )
         )
     except FloodWait as w:
