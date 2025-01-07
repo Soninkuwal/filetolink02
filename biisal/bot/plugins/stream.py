@@ -21,18 +21,19 @@ MY_PASS = os.environ.get("MY_PASS", None)
 pass_dict = {}
 pass_db = Database(Var.DATABASE_URL, "ag_passwords")
 
-msg_text = """<b>YOUR LINK GENERATED ! 😉
+msg_text ="""<b>YOUR LINK GENERATED ! 😉
 
 ‣ 𝙁𝙄𝙇𝙀 𝙉𝘼𝙈𝙀 💫 : <i>{}</i>
 
 ‣ 𝙁𝙄𝙇𝙀 𝙎𝙄𝙕𝙀 🤔 : {}
 
 🔻 <a href="{}">𝗙𝗔𝗦𝗧 𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗</a>
+
 🔺 <a href="{}">𝗪𝗔𝗧𝗖𝗛 𝗢𝗡𝗟𝗜𝗡𝗘</a>
 
 🔥 <a href="{}">𝗢𝗣𝗘𝗡 𝗜𝗡 𝗠𝗫 𝗣𝗟𝗔𝗬𝗘𝗥</a>
 📽️ <a href="{}">𝗢𝗣𝗘𝗡 𝗜𝗡 𝗣𝗟𝗔𝗬𝗜𝗧 𝗣𝗟𝗔𝗬𝗘𝗥</a>
-
+     
 ╔══════════════════╗
  [📌 JOIN MOVIE GROUP 🎭 ] 
    👇👇👇👇👇👇👇👇👇
@@ -47,33 +48,15 @@ NOTES: 🌝 THIS FILE LINK ✅ NEVER DELETE ! 😃
 
 ‣ JOIN  <a href="https://t.me/SONICKUWALSSCBOT"> ⭐ TELEGRAM CHANNEL ⭐</a></b> 🤡"""
 
-# Example usage in reply_markup
-reply_markup = InlineKeyboardMarkup(
-    [
-        [  # Middle buttons
-            InlineKeyboardButton("WATCH ONLINE 🔺", url="stream_link_placeholder"),
-            InlineKeyboardButton("FAST DOWNLOAD 🔻", url="download_link_placeholder"),
-        ],
-        [  # MX Player and PlayIt Player buttons in the middle
-            InlineKeyboardButton("OPEN IN MX PLAYER 🎥", url="mx_player_link_placeholder"),
-            InlineKeyboardButton("OPEN IN PLAYIT PLAYER 📽️", url="playit_player_link_placeholder"),
-        ],
-        [  # Bottom buttons
-            InlineKeyboardButton("JOIN MOVIE GROUP 🎭", url="https://t.me/SONICKUWALMOVIESWEBSERIES"),
-            InlineKeyboardButton("JOIN UPDATE CHANNEL ⚡", url="https://t.me/SONICKUWALUPDATEKANHA"),
-        ]
-    ]
-)
 
 
-
-@StreamBot.on_message((filters.private) & (filters.document | filters.video | filters.audio | filters.photo), group=4)
+@StreamBot.on_message((filters.private) & (filters.document | filters.video | filters.audio | filters.photo) , group=4)
 async def private_receive_handler(c: Client, m: Message):
     if not await db.is_user_exist(m.from_user.id):
         await db.add_user(m.from_user.id)
         await c.send_message(
             Var.BIN_CHANNEL,
-            f"New User Joined! : \n\nName : [{m.from_user.first_name}](tg://user?id={m.from_user.id}) Started Your Bot!!"
+            f"New User Joined! : \n\n Name : [{m.from_user.first_name}](tg://user?id={m.from_user.id}) Started Your Bot!!"
         )
     if Var.UPDATES_CHANNEL != "None":
         try:
@@ -81,7 +64,8 @@ async def private_receive_handler(c: Client, m: Message):
             if user.status == "kicked":
                 await c.send_message(
                     chat_id=m.chat.id,
-                    text="You are banned!\n\n  **Contact Support [Support](https://t.me/SONICKUWALSSCBOT). They will help you.**",
+                    text="You are banned!\n\n  **Cᴏɴᴛᴀᴄᴛ Support [Support](https://t.me/SONICKUWALSSCBOT) They Wɪʟʟ Hᴇʟᴘ Yᴏᴜ**",
+                    
                     disable_web_page_preview=True
                 )
                 return 
@@ -89,37 +73,34 @@ async def private_receive_handler(c: Client, m: Message):
             await c.send_photo(
                 chat_id=m.chat.id,
                 photo="https://graph.org/file/95a9fc09cc310c0c8cd6f.jpg",
-                caption="""<b>Hey there!\n\nPlease join our updates channel to use me! 😊\n\nDue to server overload, only our channel subscribers can use this bot!</b>""",
+                caption=""""<b>Hᴇʏ ᴛʜᴇʀᴇ!\n\nPʟᴇᴀsᴇ ᴊᴏɪɴ ᴏᴜʀ ᴜᴘᴅᴀᴛᴇs ᴄʜᴀɴɴᴇʟ ᴛᴏ ᴜsᴇ ᴍᴇ ! 😊\n\nDᴜᴇ ᴛᴏ sᴇʀᴠᴇʀ ᴏᴠᴇʀʟᴏᴀᴅ, ᴏɴʟʏ ᴏᴜʀ ᴄʜᴀɴɴᴇʟ sᴜʙsᴄʀɪʙᴇʀs ᴄᴀɴ ᴜsᴇ ᴛʜɪs ʙᴏᴛ !</b>""",
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [
-                            InlineKeyboardButton("Join Now 🚩", url=f"https://t.me/{Var.UPDATES_CHANNEL}")
+                            InlineKeyboardButton("Jᴏɪɴ ɴᴏᴡ 🚩", url=f"https://t.me/{Var.UPDATES_CHANNEL}")
                         ]
                     ]
                 ),
+                
             )
             return
         except Exception as e:
             await m.reply_text(e)
             await c.send_message(
                 chat_id=m.chat.id,
-                text="**Something went wrong. Contact my Support** [Support](https://telegram.me/SONICKUWALSSCBOT)",
-                disable_web_page_preview=True
-            )
+                text="**Sᴏᴍᴇᴛʜɪɴɢ ᴡᴇɴᴛ Wʀᴏɴɢ. Cᴏɴᴛᴀᴄᴛ ᴍʏ Support** [Support](https://telegram.me/SONICKUWALSSCBOT)",
+                
+                disable_web_page_preview=True)
             return
     ban_chk = await db.is_banned(int(m.from_user.id))
-    if ban_chk:
+    if ban_chk == True:
         return await m.reply(Var.BAN_ALERT)
     try:
         log_msg = await m.forward(chat_id=Var.BIN_CHANNEL)
         stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
         online_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
 
-        await log_msg.reply_text(
-            text=f"**Requested by:** [{m.from_user.first_name}](tg://user?id={m.from_user.id})\n**User ID:** `{m.from_user.id}`\n**Stream Link:** {stream_link}",
-            disable_web_page_preview=True,
-            quote=True
-        )
+        await log_msg.reply_text(text=f"**RᴇQᴜᴇꜱᴛᴇᴅ ʙʏ :** [{m.from_user.first_name}](tg://user?id={m.from_user.id})\n**Uꜱᴇʀ ɪᴅ :** `{m.from_user.id}`\n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True,  quote=True)
         await m.reply_text(
             text=msg_text.format(get_name(log_msg), humanbytes(get_media_file_size(m)), online_link, stream_link),
             quote=True,
@@ -136,21 +117,16 @@ async def private_receive_handler(c: Client, m: Message):
                     ]
                 ]
             )
-        )
+     )
     except FloodWait as e:
         print(f"Sleeping for {str(e.x)}s")
         await asyncio.sleep(e.x)
-        await c.send_message(
-            chat_id=Var.BIN_CHANNEL,
-            text=f"Got FloodWait of {str(e.x)}s from [{m.from_user.first_name}](tg://user?id={m.from_user.id})\n\n**User ID:** `{str(m.from_user.id)}`",
-            disable_web_page_preview=True
-)
+        await c.send_message(chat_id=Var.BIN_CHANNEL, text=f"Gᴏᴛ FʟᴏᴏᴅWᴀɪᴛ ᴏғ {str(e.x)}s from [{m.from_user.first_name}](tg://user?id={m.from_user.id})\n\n**𝚄𝚜𝚎𝚛 𝙸𝙳 :** `{str(m.from_user.id)}`", disable_web_page_preview=True)
 
-
-@StreamBot.on_message(filters.channel & ~filters.group & (filters.document | filters.video | filters.photo) & ~filters.forwarded, group=-1)
+@StreamBot.on_message(filters.channel & ~filters.group & (filters.document | filters.video | filters.photo)  & ~filters.forwarded, group=-1)
 async def channel_receive_handler(bot, broadcast):
     if int(broadcast.chat.id) in Var.BAN_CHNL:
-        print("Chat trying to get streaming link is found in BAN_CHNL, so not providing stream link")
+        print("chat trying to get straming link is found in BAN_CHNL,so im not going to give stram link")
         return
     ban_chk = await db.is_banned(int(broadcast.chat.id))
     if (int(broadcast.chat.id) in Var.BANNED_CHANNELS) or (ban_chk == True):
@@ -161,7 +137,7 @@ async def channel_receive_handler(bot, broadcast):
         stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
         online_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
         await log_msg.reply_text(
-            text=f"**Channel Name:** `{broadcast.chat.title}`\n**CHANNEL ID:** `{broadcast.chat.id}`\n**Requested URL:** {stream_link}",
+            text=f"**Channel Name:** `{broadcast.chat.title}`\n**CHANNEL ID:** `{broadcast.chat.id}`\n**Rᴇǫᴜᴇsᴛ ᴜʀʟ:** {stream_link}",
             quote=True
         )
         await bot.edit_message_reply_markup(
@@ -169,26 +145,19 @@ async def channel_receive_handler(bot, broadcast):
             message_id=broadcast.id,
             reply_markup=InlineKeyboardMarkup(
                 [
-                    [InlineKeyboardButton("WATCH ONLINE 🔺", url=stream_link),
+                   [InlineKeyboardButton("WATCH ONLINE 🔺", url=stream_link),
                      InlineKeyboardButton("FAST DOWNLOAD 🔻", url=online_link)],
                     [InlineKeyboardButton("MX Player 🔹", url=f"intent://{stream_link}#Intent;package=com.mxtech.videoplayer.ad;end"),
                      InlineKeyboardButton("PlayIt Player 🔸", url=f"intent://{stream_link}#Intent;package=com.playit.videoplayer;end")]
-                ]
+              ] 
             )
         )
     except FloodWait as w:
         print(f"Sleeping for {str(w.x)}s")
         await asyncio.sleep(w.x)
-        await bot.send_message(
-            chat_id=Var.BIN_CHANNEL,
-            text=f"GOT FLOODWAIT OF {str(w.x)}s FROM {broadcast.chat.title}\n\n**CHANNEL ID:** `{str(broadcast.chat.id)}`",
-            disable_web_page_preview=True
-        )
+        await bot.send_message(chat_id=Var.BIN_CHANNEL,
+                            text=f"GOT FLOODWAIT OF {str(w.x)}s FROM {broadcast.chat.title}\n\n**CHANNEL ID:** `{str(broadcast.chat.id)}`",
+                            disable_web_page_preview=True)
     except Exception as e:
-        await bot.send_message(
-            chat_id=Var.BIN_CHANNEL,
-            text=f"**#ERROR_TRACEBACK:** `{e}`",
-            disable_web_page_preview=True
-        )
-        print(f"Can't edit broadcast message!\nError: **Give me edit permission in updates and bin Channel! {e}**")
-     
+        await bot.send_message(chat_id=Var.BIN_CHANNEL, text=f"**#ERROR_TRACKEBACK:** `{e}`", disable_web_page_preview=True)
+        print(f"Cᴀɴ'ᴛ Eᴅɪᴛ Bʀᴏᴀᴅᴄᴀsᴛ Mᴇssᴀɢᴇ!\nEʀʀᴏʀ:  **Give me edit permission in updates and bin Channel!{e}**")
