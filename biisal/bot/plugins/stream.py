@@ -207,13 +207,42 @@ try:
 except Exception as e:
     print(f"Error: {e}")
      
-    except FloodWait as w:
-        print(f"Sleeping for {str(w.x)}s")
-        await asyncio.sleep(w.x)
-        await bot.send_message(chat_id=Var.BIN_CHANNEL,
-                            text=f"GOT FLOODWAIT OF {str(w.x)}s FROM {broadcast.chat.title}\n\n**CHANNEL ID:** `{str(broadcast.chat.id)}`",
-                            disable_web_page_preview=True)
-    except Exception as e:
-        await bot.send_message(chat_id=Var.BIN_CHANNEL, text=f"**#ERROR_TRACKEBACK:** `{e}`", disable_web_page_preview=True)
-        print(f"Cᴀɴ'ᴛ Eᴅɪᴛ Bʀᴏᴀᴅᴄᴀsᴛ Mᴇssᴀɢᴇ!\nEʀʀᴏʀ:  **Give me edit permission in updates and bin Channel!{e}**")
+except FloodWait as w:
+    # Log FloodWait duration
+    wait_time = w.x
+    chat_title = broadcast.chat.title
+    chat_id = broadcast.chat.id
 
+    print(f"FloodWait triggered. Sleeping for {wait_time} seconds.")
+
+    # Pause execution for the required duration
+    await asyncio.sleep(wait_time)
+
+    # Notify admins about the FloodWait
+    await bot.send_message(
+        chat_id=Var.BIN_CHANNEL,
+        text=(
+            f"GOT FLOODWAIT OF {wait_time}s FROM {chat_title}\n\n"
+            f"**CHANNEL ID:** `{chat_id}`"
+        ),
+        disable_web_page_preview=True
+    )
+
+except Exception as e:
+    # Capture the exception details
+    error_message = str(e)
+
+    # Notify admins about the error
+    await bot.send_message(
+        chat_id=Var.BIN_CHANNEL,
+        text=f"**#ERROR_TRACEBACK:** `{error_message}`",
+        disable_web_page_preview=True
+    )
+
+    # Log the error for debugging purposes
+    print(
+        f"Can't edit broadcast message!\n"
+        f"Error: {error_message}\n"
+        f"Ensure the bot has edit permissions in updates and bin channels."
+ )
+ 
