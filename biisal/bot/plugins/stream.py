@@ -99,16 +99,7 @@ async def private_receive_handler(c: Client, m: Message):
 
         await log_msg.reply_text(text=f"**RᴇQᴜᴇꜱᴛᴇᴅ ʙʏ :** [{m.from_user.first_name}](tg://user?id={m.from_user.id})\n**Uꜱᴇʀ ɪᴅ :** `{m.from_user.id}`\n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True,  quote=True)
         await m.reply_text(
-    text=msg_text.format(
-    get_name(log_msg),  # फ़ाइल का नाम
-    humanbytes(get_media_file_size(m)),  # फ़ाइल का आकार
-    online_link,  # ऑनलाइन लिंक
-    stream_link,  # स्ट्रीमिंग लिंक
-    stream_link,  # MX Player लिंक
-    stream_link   # PlayIt Player लिंक
-)
-        )
-
+    text=msg_text.format(get_name(log_msg), humanbytes(get_media_file_size(m)), online_link, stream_link, stream_link, stream_link),
     quote=True,
     disable_web_page_preview=True,
     reply_markup=InlineKeyboardMarkup(
@@ -116,9 +107,10 @@ async def private_receive_handler(c: Client, m: Message):
             [InlineKeyboardButton("WATCH ONLINE 🔺", url=stream_link),  # Stream Link
              InlineKeyboardButton("FAST DOWNLOAD 🔻", url=online_link)],  # Download Link
             [InlineKeyboardButton("MX Player 🔹", url=f"intent://{stream_link}#Intent;package=com.mxtech.videoplayer.ad;end"),  # MX Player Intent
-             InlineKeyboardButton("PlayIt Player 🔸", url=f"intent://{stream_link}#Intent;package=com.playit.videoplayer;end")]  # PlayIt Player Intent
+             InlineKeyboardButton("PlayIt Player 🔸", url=f"intent://{stream_l ink}#Intent;package=com.playit.videoplayer;end")]  # PlayIt Player Intent
         ]
     )
+        )
    
      
     except FloodWait as e:
