@@ -11,6 +11,9 @@ from urllib.parse import quote_plus
 from pyrogram import filters, Client
 from pyrogram.errors import FloodWait, UserNotParticipant
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
+
+from urllib.parse import quote_plus
+from telegram import InlineKeyboardMarkup, InlineKeyboardButton
 #from utils_bot import get_shortlink
 
 from biisal.utils.file_properties import get_name, get_hash, get_media_file_size
@@ -103,15 +106,20 @@ async def private_receive_handler(c: Client, m: Message):
     text=msg_text.format(get_name(log_msg), humanbytes(get_media_file_size(m)), online_link, stream_link),
     quote=True,
     disable_web_page_preview=True,
-    reply_markup=InlineKeyboardMarkup(
+    reply_markup = InlineKeyboardMarkup(
+    [
         [
-            [InlineKeyboardButton("WATCH ONLINE 🔺", url=stream_link),  # Stream Link
-             InlineKeyboardButton('FAST DOWNLOAD 🔻', url=online_link)],  # Download Link
-            [InlineKeyboardButton('Open in MX Player 🎥', url=f"https://mxplayer.com/open?url={quote_plus(stream_link)}"),  # MX Player Redirection URL
-             InlineKeyboardButton('Open in Playit Player 🎬', url=f"https://playit.com/open?url={quote_plus(stream_link)}")]  # Playit Player Redirection URL
+            InlineKeyboardButton("WATCH ONLINE 🔺", url=stream_link),  # Stream Link
+            InlineKeyboardButton('FAST DOWNLOAD 🔻', url=online_link)  # Download Link
+        ],
+        [
+            # Open in MX Player via deep link
+            InlineKeyboardButton('Open in MX Player 🎥', url=f"mxplayer://{quote_plus(stream_link)}"),  # MX Player Deep Link
+            # Open in Playit Player via deep link
+            InlineKeyboardButton('Open in Playit Player 🎬', url=f"playit://{quote_plus(stream_link)}")  # Playit Player Deep Link
         ]
-    )
-)
+    ]
+     )
 
     except FloodWait as e:
         print(f"Sleeping for {str(e.x)}s")
