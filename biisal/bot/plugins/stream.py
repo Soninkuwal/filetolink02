@@ -11,8 +11,6 @@ from urllib.parse import quote_plus
 from pyrogram import filters, Client
 from pyrogram.errors import FloodWait, UserNotParticipant
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
-
-from urllib.parse import quote_plus
 #from utils_bot import get_shortlink
 
 from biisal.utils.file_properties import get_name, get_hash, get_media_file_size
@@ -23,15 +21,16 @@ MY_PASS = os.environ.get("MY_PASS", None)
 pass_dict = {}
 pass_db = Database(Var.DATABASE_URL, "ag_passwords")
 
-msg_text = """<b>YOUR LINK GENERATED ! 😉
+msg_text ="""<b>YOUR LINK GENERATED ! 😉
 
 ‣ 𝙁𝙄𝙇𝙀 𝙉𝘼𝙈𝙀 💫 : <i>{}</i>
 
 ‣ 𝙁𝙄𝙇𝙀 𝙎𝙄𝙕𝙀 🤔 : {}
 
 🔻 <a href="{}">𝗙𝗔𝗦𝗧 𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗</a>
-🔺 <a href="{}">𝗪𝗔𝗧𝗖𝗛 𝗢𝗡𝗟𝗜𝗡𝗘</a>
 
+🔺 <a href="{}">𝗪𝗔𝗧𝗖𝗛 𝗢𝗡𝗟𝗜𝗡𝗘</a>
+     
 ╔══════════════════╗
  [📌 JOIN MOVIE GROUP 🎭 ] 
    👇👇👇👇👇👇👇👇👇
@@ -47,7 +46,8 @@ NOTES: 🌝 THIS FILE LINK ✅ NEVER DELETE ! 😃
 ‣ JOIN  <a href="https://t.me/SONICKUWALSSCBOT"> ⭐ TELEGRAM CHANNEL ⭐</a></b> 🤡"""
 
 
-@StreamBot.on_message((filters.private) & (filters.document | filters.video | filters.audio | filters.photo), group=4)
+
+@StreamBot.on_message((filters.private) & (filters.document | filters.video | filters.audio | filters.photo) , group=4)
 async def private_receive_handler(c: Client, m: Message):
     if not await db.is_user_exist(m.from_user.id):
         await db.add_user(m.from_user.id)
@@ -62,6 +62,7 @@ async def private_receive_handler(c: Client, m: Message):
                 await c.send_message(
                     chat_id=m.chat.id,
                     text="You are banned!\n\n  **Cᴏɴᴛᴀᴄᴛ Support [Support](https://t.me/SONICKUWALSSCBOT) They Wɪʟʟ Hᴇʟᴘ Yᴏᴜ**",
+                    
                     disable_web_page_preview=True
                 )
                 return 
@@ -77,6 +78,7 @@ async def private_receive_handler(c: Client, m: Message):
                         ]
                     ]
                 ),
+                
             )
             return
         except Exception as e:
@@ -84,8 +86,8 @@ async def private_receive_handler(c: Client, m: Message):
             await c.send_message(
                 chat_id=m.chat.id,
                 text="**Sᴏᴍᴇᴛʜɪɴɢ ᴡᴇɴᴛ Wʀᴏɴɢ. Cᴏɴᴛᴀᴄᴛ ᴍʏ Support** [Support](https://telegram.me/SONICKUWALSSCBOT)",
-                disable_web_page_preview=True
-            )
+                
+                disable_web_page_preview=True)
             return
     ban_chk = await db.is_banned(int(m.from_user.id))
     if ban_chk == True:
@@ -95,26 +97,18 @@ async def private_receive_handler(c: Client, m: Message):
         stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
         online_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
 
-        await log_msg.reply_text(
-            text=f"**RᴇQᴜᴇꜱᴛᴇᴅ ʙʏ :** [{m.from_user.first_name}](tg://user?id={m.from_user.id})\n**Uꜱᴇʀ ɪᴅ :** `{m.from_user.id}`\n**Stream ʟɪɴᴋ :** {stream_link}",
-            disable_web_page_preview=True,  
-            quote=True
-        )
-        
+        await log_msg.reply_text(text=f"**RᴇQᴜᴇꜱᴛᴇᴅ ʙʏ :** [{m.from_user.first_name}](tg://user?id={m.from_user.id})\n**Uꜱᴇʀ ɪᴅ :** `{m.from_user.id}`\n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True,  quote=True)
         await m.reply_text(
-    text=msg_text.format(get_name(log_msg), humanbytes(get_media_file_size(m)), online_link, stream_link),
-    quote=True,
-    disable_web_page_preview=True,
-    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("WATCH ONLINE 🔺", url=stream_link), #Stream Link
+            text=msg_text.format(get_name(log_msg), humanbytes(get_media_file_size(m)), online_link, stream_link),
+            quote=True,
+            disable_web_page_preview=True,
+            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("WATCH ONLINE 🔺", url=stream_link), #Stream Link
                                                 InlineKeyboardButton('FAST DOWNLOAD 🔻', url=online_link)]]) #Download Link
-       )
-
+        )
     except FloodWait as e:
         print(f"Sleeping for {str(e.x)}s")
         await asyncio.sleep(e.x)
-        await c.send_message(chat_id=Var.BIN_CHANNEL, text=f"Gᴏᴛ FʟᴏᴏᴅWᴀɪᴛ ᴏғ {str(e.x)}s from [{m.from_user.first_name}](tg://user?id={m.from_user.id})\n\n**𝚄𝚂𝙴𝚁 𝙸𝙳 :** `{str(m.from_user.id)}`", disable_web_page_preview=True)
-
-
+        await c.send_message(chat_id=Var.BIN_CHANNEL, text=f"Gᴏᴛ FʟᴏᴏᴅWᴀɪᴛ ᴏғ {str(e.x)}s from [{m.from_user.first_name}](tg://user?id={m.from_user.id})\n\n**𝚄𝚜𝚎𝚛 𝙸𝙳 :** `{str(m.from_user.id)}`", disable_web_page_preview=True)
 
 @StreamBot.on_message(filters.channel & ~filters.group & (filters.document | filters.video | filters.photo)  & ~filters.forwarded, group=-1)
 async def channel_receive_handler(bot, broadcast):
@@ -134,14 +128,14 @@ async def channel_receive_handler(bot, broadcast):
             quote=True
         )
         await bot.edit_message_reply_markup(
-    chat_id=broadcast.chat.id,
-    message_id=broadcast.id,
-    reply_markup=InlineKeyboardMarkup(
-        [
-            [InlineKeyboardButton("WATCH ONLINE 🔺", url=stream_link),
-             InlineKeyboardButton("FAST DOWNLOAD 🔻", url=online_link)],
-     ]
-    )
+            chat_id=broadcast.chat.id,
+            message_id=broadcast.id,
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [InlineKeyboardButton("WATCH ONLINE 🔺", url=stream_link),
+                    InlineKeyboardButton('FAST DOWNLOAD 🔻', url=online_link)] 
+                ]
+            )
         )
     except FloodWait as w:
         print(f"Sleeping for {str(w.x)}s")
