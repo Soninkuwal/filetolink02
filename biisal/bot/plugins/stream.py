@@ -30,9 +30,6 @@ msg_text ="""<b>YOUR LINK GENERATED ! 😉
 🔻 <a href="{}">𝗙𝗔𝗦𝗧 𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗</a>
 
 🔺 <a href="{}">𝗪𝗔𝗧𝗖𝗛 𝗢𝗡𝗟𝗜𝗡𝗘</a>
-
-🔥 <a href="{}">𝗢𝗣𝗘𝗡 𝗜𝗡 𝗠𝗫 𝗣𝗟𝗔𝗬𝗘𝗥</a>
-📽️ <a href="{}">𝗢𝗣𝗘𝗡 𝗜𝗡 𝗣𝗟𝗔𝗬𝗜𝗧 𝗣𝗟𝗔𝗬𝗘𝗥</a>
      
 ╔══════════════════╗
  [📌 JOIN MOVIE GROUP 🎭 ] 
@@ -102,7 +99,15 @@ async def private_receive_handler(c: Client, m: Message):
 
         await log_msg.reply_text(text=f"**RᴇQᴜᴇꜱᴛᴇᴅ ʙʏ :** [{m.from_user.first_name}](tg://user?id={m.from_user.id})\n**Uꜱᴇʀ ɪᴅ :** `{m.from_user.id}`\n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True,  quote=True)
         await m.reply_text(
-    text=msg_text.format(get_name(log_msg), humanbytes(get_media_file_size(m)), online_link, stream_link),
+    text=msg_text.format(
+    get_name(log_msg),  # फ़ाइल का नाम
+    humanbytes(get_media_file_size(m)),  # फ़ाइल का आकार
+    online_link,  # ऑनलाइन लिंक
+    stream_link,  # स्ट्रीमिंग लिंक
+    stream_link,  # MX Player लिंक
+    stream_link   # PlayIt Player लिंक
+)
+
     quote=True,
     disable_web_page_preview=True,
     reply_markup=InlineKeyboardMarkup(
