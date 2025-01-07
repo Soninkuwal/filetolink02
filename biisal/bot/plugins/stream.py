@@ -107,6 +107,7 @@ async def private_receive_handler(c: Client, m: Message):
     stream_link,  # MX Player लिंक
     stream_link   # PlayIt Player लिंक
 )
+        )
 
     quote=True,
     disable_web_page_preview=True,
@@ -118,7 +119,7 @@ async def private_receive_handler(c: Client, m: Message):
              InlineKeyboardButton("PlayIt Player 🔸", url=f"intent://{stream_link}#Intent;package=com.playit.videoplayer;end")]  # PlayIt Player Intent
         ]
     )
-   )
+   
      
     except FloodWait as e:
         print(f"Sleeping for {str(e.x)}s")
