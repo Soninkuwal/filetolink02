@@ -19,6 +19,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Delius">
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- JW Player Library -->
+    <!-- NOTE: For production, it's recommended to use your own key from your JW Player dashboard. -->
+    <script src="https://cdn.jwplayer.com/libraries/SAHhwH7T.js"></script>
 </head>
 
 <body class="bg-black">
@@ -145,15 +148,91 @@
                 </p>
             </div>
         </div>
-        <!-- Online Video Player -> to be displayed here  -->
-        <div class="justify-content-center align-items-center w-100 d-flex  flex-wrap">
-            <div class="lg:w-9/12 lg:px-12 lg:py-4 w-full  border border-danger wow animate__animated animate__fadeInLeft">
-                <video id="player" class="player " playsinline controls>
-                    <source src="{{file_url}}" type="video/mp4">
-		    <source src="{{file_url}}" type="video/mkv">
-                </video>
+
+        <!-- Online Video Player -> JW Player Embed Start -->
+        <div class="justify-content-center align-items-center w-100 d-flex flex-wrap">
+            <div class="lg:w-9/12 lg:px-12 lg:py-4 w-full border border-danger wow animate__animated animate__fadeInLeft">
+                <!-- 1. This is the container where the JW Player will be embedded. -->
+                <div id="jwplayer-container" class="player"></div>
             </div>
         </div>
+
+        <!-- 2. This script block configures and creates the JW Player.
+             To embed this player on another website, copy the JW Player library from the <head>,
+             the <div> container above, and this <script> block.
+        -->
+        <script type="text/javascript">
+            // This setup provides multiple quality levels, subtitles, and audio tracks.
+            // The 10-second forward/backward buttons are part of the default JW Player UI.
+            // Replace placeholder template variables like {{file_url}} with your actual video data.
+            // To add features, uncomment and edit the example sections below.
+            const playerInstance = jwplayer("jwplayer-container").setup({
+                title: '{{file_name}}',
+                playlist: [{
+                    title: '{{file_name}}',
+                    image: 'https://graph.org/file/95a9fc09cc310c0c8cd6f.jpg', // Video poster image
+                    sources: [
+                        // The player uses this list to show quality options.
+                        // For this to work, provide URLs for each resolution.
+                        /*
+                        // --- EXAMPLE for Multiple Qualities ---
+                        {
+                            file: '{{file_url_1080p}}', // URL for 1080p video
+                            label: '1080p',
+                            type: 'video/mp4'
+                        },
+                        {
+                            file: '{{file_url_720p}}', // URL for 720p video
+                            label: '720p',
+                            type: 'video/mp4',
+                            'default': true // Make this the default quality
+                        },
+                        */
+
+                        // This is the default setup using your single {{file_url}}.
+                        // If you have multiple qualities, comment this out and use the example above.
+                        {
+                            file: '{{file_url}}',
+                            label: 'Auto',
+                            type: 'video/mp4'
+                        }
+                    ],
+                    tracks: [
+                        // The player uses this list to show Subtitle/CC options.
+                        /*
+                        // --- EXAMPLE for Subtitles ---
+                        { 
+                            file: '{{subtitle_url_en}}', // URL to an English .vtt file
+                            label: 'English', 
+                            kind: 'subtitles',
+                            'default': true // Automatically select this subtitle track
+                        },
+                        { 
+                            file: '{{subtitle_url_es}}', // URL to a Spanish .vtt file
+                            label: 'Spanish', 
+                            kind: 'subtitles' 
+                        },
+                        */
+
+                        // The player uses this list to show Audio Track options.
+                        // Note: This is most useful if your video stream (like HLS/DASH)
+                        // already contains multiple audio tracks. JW Player will detect those automatically.
+                        /*
+                        // --- EXAMPLE for separate Audio Tracks ---
+                        {
+                            file: '{{audio_url_fr}}', // URL to a French audio file
+                            label: 'French',
+                            kind: 'audio'
+                        }
+                        */
+                    ]
+                }],
+                width: '100%',
+                aspectratio: '16:9',
+                autostart: false
+            });
+        </script>
+        <!-- JW Player Embed End -->
 
 	<script type="text/javascript">
 	atOptions = {
@@ -263,7 +342,7 @@
                     <!-- YouTube -->
                     <a class="btn btn-outline-light btn-floating m-1 rounded-circle p-2 border-secondary wow animate__animated animate__fadeInLeft hover:shadow-md hover:shadow-gray-400 hover:translate-y-[-5px] transition transition-all duration-200" href="https://t.me/SONICKUWALUPDATEKANHA" target="_blank" role="button">
                          <svg class="wow animate__animated animate__heartBeat animate__delay-1s animate__infinite" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0 0 64 64">
-                            <linearGradient id="PMWUiMSnUf2R_PPJ6rqZea_44112_gr1" x1="32" x2="32" y1="10" y2="54.751" gradientUnits="userSpaceOnUse" spreadMethod="reflect"><stop offset="0" stop-color="#1a6dff"></stop><stop offset="1" stop-color="#c822ff"></stop></linearGradient><path fill="url(#PMWUiMSnUf2R_PPJ6rqZea_44112_gr1)" d="M32,53.001c-6.358,0-12.716-0.195-19.299-0.584c-4.96-0.293-8.961-4.242-9.308-9.187 c-0.521-7.452-0.521-15.009-0.001-22.46c0.348-4.945,4.349-8.895,9.309-9.188c13.167-0.778,25.433-0.778,38.598,0 c4.96,0.293,8.961,4.242,9.308,9.187c0.521,7.452,0.521,15.009,0.001,22.46c-0.348,4.945-4.349,8.895-9.309,9.188l0,0 C44.716,52.806,38.358,53.001,32,53.001z M51.182,50.421l0.059,0.998L51.182,50.421c3.959-0.234,7.153-3.386,7.431-7.331 c0.515-7.358,0.515-14.821-0.001-22.181c-0.276-3.944-3.471-7.096-7.43-7.33c-13.088-0.773-25.275-0.773-38.363,0 c-3.959,0.234-7.153,3.386-7.431,7.331c-0.515,7.358-0.515,14.821,0.001,22.181c0.276,3.944,3.471,7.096,7.43,7.33 C25.906,51.194,38.094,51.194,51.182,50.421z"></path><linearGradient id="PMWUiMSnUf2R_PPJ6rqZeb_44112_gr2" x1="31.72" x2="31.72" y1="24.25" y2="39.252" gradientUnits="userSpaceOnUse" spreadMethod="reflect"><stop offset="0" stop-color="#6dc7ff"></stop><stop offset="1" stop-color="#e6abff"></stop></linearGradient><path fill="url(#PMWUiMSnUf2R_PPJ6rqZeb_44112_gr2)" d="M25 39.84L25 24.16 38.44 32z"></path><linearGradient id="PMWUiMSnUf2R_PPJ6rqZec_44112_gr3" x1="32.212" x2="32.212" y1="10" y2="54.751" gradientUnits="userSpaceOnUse" spreadMethod="reflect"><stop offset="0" stop-color="#1a6dff"></stop><stop offset="1" stop-color="#c822ff"></stop></linearGradient><path fill="url(#PMWUiMSnUf2R_PPJ6rqZec_44112_gr3)" d="M24,41.581V22.419L40.425,32L24,41.581z M26,25.901v12.197L36.456,32L26,25.901z"></path>
+                            <linearGradient id="PMWUiMSnUf2R_PPJ6rqZea_44112_gr1" x1="32" x2="32" y1="10" y2="54.751" gradientUnits="userSpaceOnUse" spreadMethod="reflect"><stop offset="0" stop-color="#1a6dff"></stop><stop offset="1" stop-color="#c822ff"></stop></linearGradient><path fill="url(#PMWUiMSnUf2R_PPJ6rqZea_44112_gr1)" d="M32,53.001c-6.358,0-12.716-0.195-19.299-0.584c-4.96-0.293-8.961-4.242-9.308-9.187 c-0.521-7.452-0.521-15.009-0.001-22.46c0.348-4.945,4.349-8.895,9.309-9.188c13.167-0.778,25.433-0.778,38.598,0 c4.96,0.293,8.961,4.242,9.308,9.187c0.521,7.452,0.521,15.009,0.001,22.46c-0.348-4.945-4.349-8.895-9.309-9.188l0,0 C44.716,52.806,38.358,53.001,32,53.001z M51.182,50.421l0.059,0.998L51.182,50.421c3.959-0.234,7.153-3.386,7.431-7.331 c0.515-7.358,0.515-14.821-0.001-22.181c-0.276-3.944-3.471-7.096-7.43-7.33c-13.088-0.773-25.275-0.773-38.363,0 c-3.959,0.234-7.153,3.386-7.431,7.331c-0.515,7.358-0.515,14.821,0.001,22.181c0.276,3.944,3.471,7.096,7.43,7.33 C25.906,51.194,38.094,51.194,51.182,50.421z"></path><linearGradient id="PMWUiMSnUf2R_PPJ6rqZeb_44112_gr2" x1="31.72" x2="31.72" y1="24.25" y2="39.252" gradientUnits="userSpaceOnUse" spreadMethod="reflect"><stop offset="0" stop-color="#6dc7ff"></stop><stop offset="1" stop-color="#e6abff"></stop></linearGradient><path fill="url(#PMWUiMSnUf2R_PPJ6rqZeb_44112_gr2)" d="M25 39.84L25 24.16 38.44 32z"></path><linearGradient id="PMWUiMSnUf2R_PPJ6rqZec_44112_gr3" x1="32.212" x2="32.212" y1="10" y2="54.751" gradientUnits="userSpaceOnUse" spreadMethod="reflect"><stop offset="0" stop-color="#1a6dff"></stop><stop offset="1" stop-color="#c822ff"></stop></linearGradient><path fill="url(#PMWUiMSnUf2R_PPJ6rqZec_44112_gr3)" d="M24,41.581V22.419L40.425,32L24,41.581z M26,25.901v12.197L36.456,32L26,25.901z"></path>
                         </svg>
                     </a>
               
