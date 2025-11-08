@@ -16,38 +16,9 @@
     <link rel="stylesheet" type='text/css' href="https://drive----google.com/uc?export=view&id=1pVLG4gZy7jdow3sO-wFS06aP_A9QX0O6">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Delius">
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.6.9/plyr.css" />
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <script src="https://content.jwplatform.com/libraries/KB5zFt7A.js"></script>
-
-    <style>
-        /* Customizing Player Colors */
-        /* Progress Bar Color */
-        .jw-slider-horizontal .jw-progress {
-            background-color: yellow !important; /* Specific for the filled part of the progress bar */
-        }
-        .jw-rail {
-            background-color: pink !important; /* Background of the progress bar */
-        }
-
-        /* Change JWPlayer icons and text color to red */
-        .jw-icon,
-        .jw-text,
-        .jw-reset { /* Applies to most player controls and text */
-            color: red !important;
-        }
-
-        /* Specific for button colors if they don't inherit from .jw-icon */
-        .jw-button-color {
-            color: gold !important; /* This will override the red for specific buttons if they have this class */
-        }
-
-        /* Text track (subtitle) color */
-        .jw-text-track-display {
-            color: yellow !important;
-        }
-    </style>
-    </head>
+</head>
 
 <body class="bg-black">
     <header>
@@ -160,12 +131,19 @@
                 </p>
             </div>
         </div>
-        
         <div class="justify-content-center align-items-center w-100 d-flex  flex-wrap">
             <div class="lg:w-9/12 lg:px-12 lg:py-4 w-full  border border-danger wow animate__animated animate__fadeInLeft">
-                <div id="my-video-player"></div>
+                <video id="player" class="player " playsinline controls>
+                    <source src="{{file_url}}" type="video/mp4">
+		    <source src="{{file_url}}" type="video/mkv">
+                </video>
             </div>
         </div>
+
+
+	    
+	
+
         <div class="justify-content-center align-items-center w-100 d-flex">
                     <div class="row d-flex w-100 justify-content-center align-items-center">
 
@@ -328,106 +306,34 @@
 
     </script>
     
+    <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+    
     <script>
-        // Initialize JW Player
-        const player = jwplayer("my-video-player").setup({
-            file: "{{file_url}}", // Use the template variable
-            title: "{{file_name}}", // Use the template variable
-            description: "THIS CODE CERATE KANHA KUWAL",
-            image: "https://img.icons8.com/?size=100&id=63306&format=png&color=000000",
-            playbackRateControls: true,
-            defaultPlaybackRate: 1,
-            playbackRates: [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.5, 3, 3.5, 4],
-            mute: false,
-            width: "100%",
-            aspectratio: "16:9", // Use aspect ratio to maintain size
-            autostart: true,
-            controls: true,
-            displaydescription: true,
-            displaytitle: true,
-            skin: {
-                name: "six"
-            },
-            captions: {
-                color: "#FFFFFF",
-                fontSize: 14,
-                backgroundOpacity: 0.75,
-                edgeStyle: "raised"
-            },
-            logo: {
-                file: 'https://img.icons8.com/?size=100&id=63306&format=png&color=000000',
-                link: 'https://t.me/SONICKUWALUPDATEKANHA',
-                position: 'top-right',
-                margin: 10,
-                hide: true 
-            },
-            advertising: {
-                client: "vast",
-                schedule: [{
-                    offset: "pre",
-                    tag: "https://pubads.g.doubleclick.net/gampad/ads?iu=/12345/video&sz=640x480&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1"
-                }]
-            },
-            sport: true,
-            events: {
-                onComplete: function() {
-                    player.stop();
-                }
-            }
+        const controls = [
+            'play-large',
+            'rewind', // यह 10s पीछे करेगा
+            'play', 
+            'fast-forward', // यह 10s आगे करेगा
+            'progress', 
+            'current-time',
+            'duration',
+            'mute',
+            'volume',
+            'captions',
+            'settings',
+            'pip',
+            'airplay',
+            'fullscreen'
+            // 'download' हटा दिया क्योंकि आपके पास कस्टम बटन है
+        ];
+        document.addEventListener('DOMContentLoaded', () => {
+            // 'new Plyr' का उपयोग करें, यह ज़्यादा आधुनिक है
+            const player = new Plyr('.player', { 
+                controls: controls,
+                seekTime: 10 // 10 सेकंड सीक टाइम सेट करें
+            });
         });
 
-        // Custom seek buttons (forward/rewind) - Logic from index (2).html
-        player.on('ready', function() {
-            const playerContainer = this.getContainer();
-            const buttonContainer = playerContainer.querySelector(".jw-button-container");
-            const spacer = buttonContainer.querySelector(".jw-spacer");
-            const timeSlider = playerContainer.querySelector(".jw-slider-time");
-
-            // Move the time slider to replace the spacer in the control bar
-            if (spacer && timeSlider) {
-                buttonContainer.replaceChild(timeSlider, spacer);
-            }
-
-            // --- Custom Forward Button for Display Icon (Center of player) ---
-            const rewindDisplayContainer = playerContainer.querySelector(".jw-display-icon-rewind");
-            if (rewindDisplayContainer) {
-                const forwardDisplayContainer = rewindDisplayContainer.cloneNode(true);
-                const forwardDisplayButton = forwardDisplayContainer.querySelector(".jw-icon-rewind");
-
-                if (forwardDisplayButton) {
-                    forwardDisplayButton.style.transform = "scaleX(-1)"; // Flip icon for forward
-                    forwardDisplayButton.ariaLabel = "Forward 10 Seconds";
-                    // Append before the next button if it exists, otherwise just append
-                    const nextContainer = playerContainer.querySelector(".jw-display-icon-next");
-                    if (nextContainer) {
-                        nextContainer.parentNode.insertBefore(forwardDisplayContainer, nextContainer);
-                        nextContainer.style.display = "none"; // Hide original next button if desired
-                    } else {
-                        rewindDisplayContainer.parentNode.appendChild(forwardDisplayContainer);
-                    }
-
-                    forwardDisplayButton.onclick = () => {
-                        this.seek(this.getPosition() + 10);
-                    };
-                }
-            }
-
-            // --- Custom Forward Button for Control Bar ---
-            const rewindControlBarButton = buttonContainer.querySelector(".jw-icon-rewind");
-            if (rewindControlBarButton) {
-                const forwardControlBarButton = rewindControlBarButton.cloneNode(true);
-                if (forwardControlBarButton) {
-                    forwardControlBarButton.style.transform = "scaleX(-1)"; // Flip icon for forward
-                    forwardControlBarButton.ariaLabel = "Forward 10 Seconds";
-                    // Insert right after the original rewind button
-                    rewindControlBarButton.parentNode.insertBefore(forwardControlBarButton, rewindControlBarButton.nextElementSibling);
-
-                    forwardControlBarButton.onclick = () => {
-                        this.seek(this.getPosition() + 10);
-                    };
-                }
-            }
-        });
     </script>
     <script>
         document.addEventListener("contextmenu", function (e) {
@@ -448,54 +354,46 @@
     </script>
     
     
-    
     <script>
-        const videolink = window.location.href;
-        const  lazyLink = videolink.replace("/watch/", "/");
+        // वीडियो URL को सीधे प्लेयर के <source> से प्राप्त करें
+        // यह window.location.href का उपयोग करने से ज़्यादा भरोसेमंद है
+        const videoUrl = document.getElementById('player').getElementsByTagName('source')[0].src;
 
         function vlc_player() {
-            const openLazyLink = lazyLink;
-            const openVlc = `vlc://${openLazyLink}`;
+            const openVlc = `vlc://${videoUrl}`;
             window.location.href = openVlc;
         }
 	    
 	function mx_player() {
-            const openLazyLink = lazyLink;
-            const openMx = `intent:${openLazyLink}#Intent;package=com.mxtech.videoplayer.ad;end`;
+            const openMx = `intent:${videoUrl}#Intent;package=com.mxtech.videoplayer.ad;end`;
             window.location.href = openMx;
         }
         
 	function playit_player() {
-    	const openLazyLink = lazyLink;
-    	const openPlayit = `playit://playerv2/video?url=${openLazyLink}`;
-   	 window.location.href = openPlayit;
+    	    const openPlayit = `playit://playerv2/video?url=${videoUrl}`;
+   	    window.location.href = openPlayit;
 	}
 	    
 	function s_player() {
-            const openLazyLink = lazyLink;
-            const openSplayer = `intent:${openLazyLink}#Intent;action=com.young.simple.player.playback_online;package=com.young.simple.player;end`;
+            const openSplayer = `intent:${videoUrl}#Intent;action=com.young.simple.player.playback_online;package=com.young.simple.player;end`;
             window.location.href = openSplayer;
         }
 	    
 	function km_player() {
-           const openLazyLink = lazyLink;
-           const openKmplayer = `intent:${openLazyLink}#Intent;package=com.kmplayer;end`;
+           const openKmplayer = `intent:${videoUrl}#Intent;package=com.kmplayer;end`;
            window.location.href = openKmplayer;
         }
         
 	function hd_player() {
-           const openLazyLink = lazyLink;
-           const openHDplayer = `intent:${openLazyLink}#Intent;package=uplayer.video.player;end`;
+           const openHDplayer = `intent:${videoUrl}#Intent;package=uplayer.video.player;end`;
            window.location.href = openHDplayer;
         }
 	    
         function lazyDownload() {
-            const openLazyLink = lazyLink;
-            window.location.href = openLazyLink;
+            // यह अब सीधे वीडियो फ़ाइल URL को डाउनलोड करेगा
+            window.location.href = videoUrl;
         }
 
     </script>
-
-
-</body>
+    </body>
 </html>
