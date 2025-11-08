@@ -15,7 +15,7 @@ class Var(object):
     API_ID = str(getenv('API_ID', '22215080'))
     API_HASH = str(getenv('API_HASH', '6ab80ad5d78fee18fdd9b909edfbafd5'))
     BOT_TOKEN = str(getenv('BOT_TOKEN' , ''))
-    name = str(getenv('name', 'kanha_file2link_bot'))
+    name = str(getenv('name', 'FILESTREAMKANHA1BOT'))
     SLEEP_THRESHOLD = int(getenv('SLEEP_THRESHOLD', '60'))
     WORKERS = int(getenv('WORKERS', '4'))
     BIN_CHANNEL = str(getenv('BIN_CHANNEL', '-1002344280987'))
@@ -26,7 +26,7 @@ class Var(object):
     OWNER_ID = [int(x) for x in os.environ.get("OWNER_ID", "7841292070").split()]
     NO_PORT = bool(getenv('NO_PORT', False))
     APP_NAME = None
-    OWNER_USERNAME = str(getenv('OWNER_USERNAME', 'kanhaiyalalmeenakuwal'))
+    OWNER_USERNAME = str(getenv('OWNER_USERNAME', 'SONICKUWALSSCBOT'))
     if 'DYNO' in environ:
         ON_HEROKU = True
         APP_NAME = str(getenv('APP_NAME')) #dont need to fill anything here
@@ -43,4 +43,5 @@ class Var(object):
     UPDATES_CHANNEL = str(getenv('UPDATES_CHANNEL', 'SONICKUWALUPDATEKANHA')) 
     BANNED_CHANNELS = list(set(int(x) for x in str(getenv("BANNED_CHANNELS", "-1002344280987")).split()))   
     BAN_CHNL = list(set(int(x) for x in str(getenv("BAN_CHNL", "-1002344280987")).split()))   
-    BAN_ALERT = str(getenv('BAN_ALERT' , '<b>ʏᴏᴜʀ ᴀʀᴇ ʙᴀɴɴᴇᴅ ᴛᴏ ᴜsᴇ ᴛʜɪs ʙᴏᴛ.Pʟᴇᴀsᴇ ᴄᴏɴᴛᴀᴄᴛ @SONICKUWALUPDATEKANHA ᴛᴏ ʀᴇsᴏʟᴠᴇ ᴛʜᴇ ɪssᴜᴇ!!</b>'))
+    BAN_ALERT = str(getenv('BAN_ALERT' , '<b>ʏᴏᴜʀ ᴀʀᴇ ʙᴀɴɴᴇᴅ ᴛᴏ ᴜsᴇ ᴛʜɪs ʙᴏᴛ.Pʟᴇᴀsᴇ ᴄᴏɴᴛᴀᴄᴛ @@SONICKUWALSSCBOT ᴛᴏ ʀᴇsᴏʟᴠᴇ ᴛʜᴇ ɪssᴜᴇ!!</b>'))
+
