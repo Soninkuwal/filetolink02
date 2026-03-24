@@ -36,6 +36,10 @@ msg_text ="""<b>YOUR LINK GENERATED ! 😉
    👇👇👇👇👇👇👇👇👇
 <a href=https://t.me/SONICKUWALMOVIESWEBSERIES>JOIN MOVIE 🎥 GROUP</a>
 
+[📌 FOR ANY MOVIE WEB SERIES LIVE TV 🎭 ] 
+   👇👇👇👇👇👇👇👇👇
+<a href=https://ks4hub.pages.dev/> OPEN NOW </a>
+
  [📌 JOIN UPDATE CHANNEL ⚡]
 👇👇👇👇👇👇👇👇
 <a href=https://t.me/SONICKUWALUPDATEKANHA>JOIN UPDATED CHANNEL</a>
