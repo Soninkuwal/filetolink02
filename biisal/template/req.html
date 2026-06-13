@@ -183,6 +183,14 @@
                                 </svg>
                                 HD Player(4K)
                             </div>
+							<div onclick="ns_player()" class="card card-body col-lg-3 col-5 bg-dark text-secondary text-center jcc align-items-center hover:shadow-md hover:shadow-gray-400 hover:translate-y-[-5px] transition transition-all duration-300 wow animate__animated animate__fadeInRight">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="#00ffcc" viewBox="0 0 16 16">
+        <path d="M2.5 4a.5.5 0 0 0 0 1h11a.5.5 0 0 0 0-1h-11zm0 3a.5.5 0 0 0 0 1h11a.5.5 0 0 0 0-1h-11zm0 3a.5.5 0 0 0 0 1h11a.5.5 0 0 0 0-1h-11z"/>
+    </svg>
+
+    Network Stream
+							</div>
                             <div onclick="lazyDownload()" class="col-lg-4 p-2 col-12 rounded-3xl bg-dark text-white text-center align-items-center hover:bg-gradient-to-r from-pink-500 to-violet-500 hover:shadow-md hover:shadow-gray-100 hover:translate-y-[-5px] transition transition-all duration-300 wow animate__animated animate__rubberBand">
                                 Download Now
                             </div>
@@ -361,7 +369,7 @@
         const videoUrl = document.getElementById('player').getElementsByTagName('source')[0].src;
 
         function vlc_player() {
-            const openVlc = `vlc://${videoUrl}`;
+            const openVlc = `intent:${videoUrl}#Intent;package=org.videolan.vlc;end`;
             window.location.href = openVlc;
         }
 	    
@@ -371,12 +379,12 @@
         }
         
 	function playit_player() {
-    	    const openPlayit = `playit://playerv2/video?url=${videoUrl}`;
+    	    const openPlayit = `intent:${videoUrl}#Intent;package=com.playit.videoplayer;end`;
    	    window.location.href = openPlayit;
 	}
 	    
 	function s_player() {
-            const openSplayer = `intent:${videoUrl}#Intent;action=com.young.simple.player.playback_online;package=com.young.simple.player;end`;
+            const openSplayer = `intent:${videoUrl}#Intent;package=com.ttee.leeplayer;end`;
             window.location.href = openSplayer;
         }
 	    
@@ -386,9 +394,14 @@
         }
         
 	function hd_player() {
-           const openHDplayer = `intent:${videoUrl}#Intent;package=uplayer.video.player;end`;
+           const openHDplayer = `intent:${videoUrl}#Intent;package=com.rocks.music.videoplayer;end`;
            window.location.href = openHDplayer;
         }
+
+   function ns_player() {
+           const opennsplayer = `intent:${videoUrl}#Intent;package=com.genuine.leone;end`;
+           window.location.href = openHDplayer;
+   }
 	    
         function lazyDownload() {
             // यह अब सीधे वीडियो फ़ाइल URL को डाउनलोड करेगा
