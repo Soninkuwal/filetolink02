@@ -16,6 +16,29 @@ from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 from biisal.utils.file_properties import get_name, get_hash, get_media_file_size
 db = Database(Var.DATABASE_URL, Var.name)
 
+# stream.py
+
+# LINE 18 — add this function after:
+# from biisal.utils.file_properties import get_name, get_hash, get_media_file_size
+
+def safe_file_name(message):
+    try:
+        name = get_name(message)
+    except Exception:
+        name = None
+
+    if not name:
+        media = (
+            getattr(message, "document", None)
+            or getattr(message, "video", None)
+            or getattr(message, "audio", None)
+        )
+        name = getattr(media, "file_name", None) if media else None
+
+    return str(name or f"file_{message.id}")
+
+
+
 
 MY_PASS = os.environ.get("MY_PASS", None)
 pass_dict = {}
@@ -97,13 +120,19 @@ async def private_receive_handler(c: Client, m: Message):
     if ban_chk == True:
         return await m.reply(Var.BAN_ALERT)
     try:
-        log_msg = await m.forward(chat_id=Var.BIN_CHANNEL)
-        stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
-        online_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
+        # LINE 100-102 — replace these lines:
+
+          log_msg = await m.forward(chat_id=Var.BIN_CHANNEL)
+          file_name = safe_file_name(log_msg)
+
+          stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(file_name)}?hash={get_hash(log_msg)}"
+          online_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(file_name)}?hash={get_hash(log_msg)}"
 
         await log_msg.reply_text(text=f"**RᴇQᴜᴇꜱᴛᴇᴅ ʙʏ :** [{m.from_user.first_name}](tg://user?id={m.from_user.id})\n**Uꜱᴇʀ ɪᴅ :** `{m.from_user.id}`\n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True,  quote=True)
         await m.reply_text(
-            text=msg_text.format(get_name(log_msg), humanbytes(get_media_file_size(m)), online_link, stream_link),
+            # LINE 106 — replace:
+
+            text=msg_text.format(file_name, humanbytes(get_media_file_size(m)), online_link, stream_link),
             quote=True,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("WATCH ONLINE 🔺", url=stream_link), #Stream Link
@@ -124,9 +153,13 @@ async def channel_receive_handler(bot, broadcast):
         await bot.leave_chat(broadcast.chat.id)
         return
     try:
-        log_msg = await broadcast.forward(chat_id=Var.BIN_CHANNEL)
-        stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
-        online_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
+        # LINE 127-129 — replace these lines:
+
+         log_msg = await broadcast.forward(chat_id=Var.BIN_CHANNEL)
+         file_name = safe_file_name(log_msg)
+
+         stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(file_name)}?hash={get_hash(log_msg)}"
+         online_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(file_name)}?hash={get_hash(log_msg)}"
         await log_msg.reply_text(
             text=f"**Channel Name:** `{broadcast.chat.title}`\n**CHANNEL ID:** `{broadcast.chat.id}`\n**Rᴇǫᴜᴇsᴛ ᴜʀʟ:** {stream_link}",
             quote=True
